@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Directive, ElementRef, HostBinding, Input, OnChanges, SimpleChanges} from '@angular/core';
-import {NumberUtils, StringUtils} from '@dontdrinkandroot/angular-extensions';
+import {NumberUtils, StringUtils} from '@dontdrinkandroot/ngx-extensions';
 
 @Directive({selector: '[ddrGridTileLazyImg]'})
 export class GridTileLazyImgDirective implements OnChanges

@@ -1,7 +1,7 @@
 import {AfterContentInit, ContentChildren, Directive, HostListener, OnDestroy, QueryList} from '@angular/core';
 import {GridTileLazyImgDirective} from './grid-tile-lazy-img.directive';
 import {Subscription} from 'rxjs';
-import {Debounce, Limit} from '@dontdrinkandroot/angular-extensions';
+import {Debounce, Limit} from '@dontdrinkandroot/ngx-extensions';
 
 @Directive({selector: '[ddrGridTileLazyImgContainer]'})
 export class GridTileLazyImageContainerDirective implements AfterContentInit, OnDestroy
