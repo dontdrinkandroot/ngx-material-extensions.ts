@@ -5,14 +5,18 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {GridTileLazyImageContainerDirective} from './gridlist/grid-tile-lazy-image-container.directive';
 import {GridTileLazyImgDirective} from './gridlist/grid-tile-lazy-img.directive';
+import {SidenavContainerComponent} from './sidenav/sidenav-container.component';
+import {CommonModule} from '@angular/common';
 
 @NgModule({
     declarations: [
         SidenavToggleComponent,
         GridTileLazyImageContainerDirective,
-        GridTileLazyImgDirective
+        GridTileLazyImgDirective,
+        SidenavContainerComponent
     ],
     imports: [
+        CommonModule,
         MatSidenavModule,
         MatIconModule,
         MatButtonModule
@@ -20,7 +24,8 @@ import {GridTileLazyImgDirective} from './gridlist/grid-tile-lazy-img.directive'
     exports: [
         SidenavToggleComponent,
         GridTileLazyImageContainerDirective,
-        GridTileLazyImgDirective
+        GridTileLazyImgDirective,
+        SidenavContainerComponent
     ]
 })
 export class DdrMaterialExtensionsModule

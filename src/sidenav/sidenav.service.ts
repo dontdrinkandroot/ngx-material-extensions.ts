@@ -8,7 +8,7 @@ export class SidenavService
 {
     private sidenav: MatSidenav;
 
-    public setSidenav(sidenav: MatSidenav)
+    public setSidenav(sidenav: MatSidenav): void
     {
         this.sidenav = sidenav;
     }
