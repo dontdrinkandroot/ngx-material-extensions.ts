@@ -1,0 +1,61 @@
+$displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex !default;
+$grid-breakpoints: (xs: 0, sm: 600px, md: 960px, lg: 1280px, xl: 1920px) !default;
+$font-family-monospace: "Roboto Mono", monospace !default;
+
+// Space
+$spacer: 1rem !default;
+$spacers: (0: 0, 1: ($spacer * .25), 2: ($spacer * .5), 3: $spacer, 4: ($spacer * 1.5), 5: ($spacer * 3));
+
+// Font weights
+$font-weight-lighter: lighter !default;
+$font-weight-light: 300 !default;
+$font-weight-normal: 400 !default;
+$font-weight-bold: 700 !default;
+$font-weight-bolder: bolder !default;
+
+// Colors
+$white: #fff !default;
+$gray-500: #9E9E9E !default;
+$black: #000 !default;
+$body-color: #fafafa !default;
+$text-muted: $gray-500 !default;
+$success: #4CAF50;
+$warning: #FFC107;
+$danger: #F44336;
+$theme-colors: ("success": $success, "warning": $warning, "danger": $danger);
+
+// Toggles
+$enable-deprecation-messages: false;
+
+// Links
+$emphasized-link-hover-darken-percentage: 15% !default;
+
+@import '~bootstrap/scss/mixins/breakpoints';
+@import '~bootstrap/scss/mixins/deprecate';
+@import '~bootstrap/scss/mixins/hover';
+@import '~bootstrap/scss/mixins/text-emphasis';
+@import '~bootstrap/scss/mixins/text-hide';
+@import '~bootstrap/scss/mixins/text-truncate';
+
+@import '~bootstrap/scss/utilities/display';
+@import '~bootstrap/scss/utilities/flex';
+@import '~bootstrap/scss/utilities/spacing';
+@import '~bootstrap/scss/utilities/text';
+
+$toolbar-height: 56px;
+$toolbar-height-sm-up: 64px;
+$fab-height: 88px;
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
