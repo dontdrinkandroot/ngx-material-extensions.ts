@@ -1,9 +1,10 @@
-<mat-sidenav-container [ngClass]="{'ddr-mat-mode-side': (stayOpenOnLargeScreen && screenLarge$|async)}">
+<!--<mat-sidenav-container [ngClass]="{'ddr-mat-mode-side': (stayOpenOnLargeScreen && screenLarge$|async)}">-->
+<mat-sidenav-container>
     <mat-sidenav
         #sidenav
         fixedInViewport="true"
-        [mode]="(stayOpenOnLargeScreen && screenLarge$|async) ? 'side' : 'over'"
-        [opened]="(stayOpenOnLargeScreen && screenLarge$|async)">
+        [mode]="(mode$|async)"
+        [opened]="(opened$|async)">
         <ng-content select="[slot=mat-sidenav]"></ng-content>
     </mat-sidenav>
     <mat-sidenav-content>
