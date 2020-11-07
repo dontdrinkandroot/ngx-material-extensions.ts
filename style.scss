@@ -75,8 +75,8 @@ ddr-mat-sidenav-toggle {
     @extend .mr-2;
 }
 
-mat-sidenav-container.ddr-mat-mode-side {
+mat-sidenav-container.side {
     ddr-mat-sidenav-toggle {
-        @extend .d-md-none;
+        @extend .d-none;
     }
 }
