@@ -1,13 +1,13 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
-@include mat-core();
+@include mat.core();
 
-$ddr-mat-primary: mat-palette($mat-blue, 700, 300, 900) !default;
-$ddr-mat-accent: mat-palette($mat-grey) !default;
-$ddr-mat-warn: mat-palette($mat-red) !default;
-$ddr-mat-theme: mat-light-theme($ddr-mat-primary, $ddr-mat-accent, $ddr-mat-warn) !default;
+$ddr-mat-primary: mat.define-palette(mat.$blue-palette, 700, 300, 900) !default;
+$ddr-mat-accent: mat.define-palette(mat.$grey-palette) !default;
+$ddr-mat-warn: mat.define-palette(mat.$red-palette) !default;
+$ddr-mat-theme: mat.define-light-theme($ddr-mat-primary, $ddr-mat-accent, $ddr-mat-warn) !default;
 
-@include angular-material-theme($ddr-mat-theme);
+@include mat.all-component-themes($ddr-mat-theme);
 
 $displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex !default;
 $grid-breakpoints: (xs: 0, sm: 600px, md: 960px, lg: 1280px, xl: 1920px) !default;
