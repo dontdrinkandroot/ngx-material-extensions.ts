@@ -68,6 +68,8 @@ export class SidenavService
         if (!(this.stayOpenOnLargeScreen && this.breakpointObserver.isMatched(this.largeBreakpoints))) {
             return this.sidenav.toggle();
         }
+
+        return Promise.resolve(this.sidenav.opened ? 'open' : 'close');
     }
 
     public closeSidebar(): void
