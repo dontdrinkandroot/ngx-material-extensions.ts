@@ -5,7 +5,7 @@ import {NumberUtils, StringUtils} from '@dontdrinkandroot/ngx-extensions';
 export class GridTileLazyImgDirective implements OnChanges
 {
     @Input('ddrGridTileLazyImg')
-    public src: string;
+    public src!: string;
 
     @HostBinding('src')
     public hostSrc = 'assets/placeholder.gif';
@@ -14,10 +14,10 @@ export class GridTileLazyImgDirective implements OnChanges
     public hostStyleObjectFit = 'contain';
 
     @HostBinding('style.width.px')
-    public hostStyleWidthPx: number;
+    public hostStyleWidthPx!: number;
 
     @HostBinding('style.height.px')
-    public hostStyleHeightPx: number;
+    public hostStyleHeightPx!: number;
 
     @HostBinding('style.opacity')
     public hostStyleOpacity = 0;
@@ -30,7 +30,7 @@ export class GridTileLazyImgDirective implements OnChanges
 
     private displayed = false;
 
-    private maxLoadedDimension: { width: number, height: number };
+    private maxLoadedDimension: { width: number, height: number } | null = null;
 
     constructor(private element: ElementRef, private cd: ChangeDetectorRef)
     {
@@ -92,7 +92,7 @@ export class GridTileLazyImgDirective implements OnChanges
         }
     }
 
-    private isInsideViewport(nativeElement, offset: number): boolean
+    private isInsideViewport(nativeElement: HTMLElement, offset: number): boolean
     {
         // console.log('isInsideViewport');
         const ownerDocument = nativeElement.ownerDocument;
@@ -122,7 +122,7 @@ export class GridTileLazyImgDirective implements OnChanges
         };
     }
 
-    private isHidden(nativeElement)
+    private isHidden(nativeElement: HTMLElement)
     {
         // console.log('isHidden');
         return window.getComputedStyle(nativeElement).display === 'none';

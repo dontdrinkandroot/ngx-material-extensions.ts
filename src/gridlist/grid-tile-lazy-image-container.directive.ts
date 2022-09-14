@@ -6,9 +6,9 @@ import {Debounce, Limit} from '@dontdrinkandroot/ngx-extensions';
 @Directive({selector: '[ddrGridTileLazyImgContainer]'})
 export class GridTileLazyImageContainerDirective implements AfterContentInit, OnDestroy
 {
-    @ContentChildren(GridTileLazyImgDirective, {descendants: true}) lazyImages: QueryList<GridTileLazyImgDirective>;
+    @ContentChildren(GridTileLazyImgDirective, {descendants: true}) lazyImages!: QueryList<GridTileLazyImgDirective>;
 
-    private changeSubscription: Subscription;
+    private changeSubscription!: Subscription;
 
     @HostListener('window:resize', ['$event'])
     @Debounce()

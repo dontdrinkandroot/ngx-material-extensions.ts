@@ -2,7 +2,7 @@
     <mat-sidenav
         #sidenav
         fixedInViewport="true"
-        [mode]="(mode$|async)"
+        [mode]="(mode$|async) ?? 'over'"
         [opened]="(opened$|async)">
         <ng-content select="[slot=mat-sidenav]"></ng-content>
     </mat-sidenav>

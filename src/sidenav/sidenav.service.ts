@@ -10,7 +10,7 @@ import {NavigationStart, Router} from '@angular/router';
 })
 export class SidenavService
 {
-    private sidenav: MatSidenav;
+    private sidenav!: MatSidenav;
 
     private stayOpenOnLargeScreen = false;
 

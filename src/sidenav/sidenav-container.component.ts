@@ -11,14 +11,14 @@ import {Observable} from 'rxjs';
 export class SidenavContainerComponent implements OnInit, OnChanges
 {
     @ViewChild('sidenav', {static: true})
-    public sidenav: MatSidenav;
+    public sidenav!: MatSidenav;
 
     @Input()
     public stayOpenOnLargeScreen = false;
 
-    public mode$: Observable<MatDrawerMode>;
+    public mode$: Observable<MatDrawerMode> = this.sidenavService.getModeObservable();
 
-    public opened$: Observable<boolean>;
+    public opened$: Observable<boolean> = this.sidenavService.getOpenedObservable();
 
     constructor(private sidenavService: SidenavService, private breakpointObserver: BreakpointObserver)
     {
@@ -29,7 +29,7 @@ export class SidenavContainerComponent implements OnInit, OnChanges
      */
     public ngOnChanges(changes: SimpleChanges): void
     {
-        this.sidenavService.setStayOpenOnLargeScreen(changes.stayOpenOnLargeScreen.currentValue);
+        this.sidenavService.setStayOpenOnLargeScreen(changes['stayOpenOnLargeScreen'].currentValue);
     }
 
     /**
@@ -38,7 +38,5 @@ export class SidenavContainerComponent implements OnInit, OnChanges
     public ngOnInit(): void
     {
         this.sidenavService.setSidenav(this.sidenav);
-        this.mode$ = this.sidenavService.getModeObservable();
-        this.opened$ = this.sidenavService.getOpenedObservable();
     }
 }
