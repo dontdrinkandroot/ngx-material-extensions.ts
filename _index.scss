@@ -3,64 +3,53 @@
 @include mat.core();
 
 $ddr-mat-primary: mat.define-palette(mat.$blue-palette, 700, 300, 900) !default;
-$ddr-mat-accent: mat.define-palette(mat.$grey-palette) !default;
+$ddr-mat-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
 $ddr-mat-warn: mat.define-palette(mat.$red-palette) !default;
 $ddr-mat-theme: mat.define-light-theme($ddr-mat-primary, $ddr-mat-accent, $ddr-mat-warn) !default;
 
 @include mat.all-component-themes($ddr-mat-theme);
 
-$displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex !default;
-$grid-breakpoints: (xs: 0, sm: 600px, md: 960px, lg: 1280px, xl: 1920px) !default;
-$font-family-monospace: "Roboto Mono", monospace !default;
-
-// Space
-$spacer: 1rem !default;
-$spacers: (0: 0, 1: ($spacer * .25), 2: ($spacer * .5), 3: $spacer, 4: ($spacer * 1.5), 5: ($spacer * 3));
-
-// Font weights
-$font-weight-lighter: lighter !default;
-$font-weight-light: 300 !default;
-$font-weight-normal: 400 !default;
-$font-weight-bold: 700 !default;
-$font-weight-bolder: bolder !default;
-
-// Colors
-$white: #fff !default;
-$gray-500: #9E9E9E !default;
-$black: #000 !default;
-$body-color: #fafafa !default;
-$text-muted: $gray-500 !default;
-$success: #4CAF50;
-$warning: #FFC107;
-$danger: #F44336;
-$theme-colors: ("success": $success, "warning": $warning, "danger": $danger);
-
-// Toggles
-$enable-deprecation-messages: false;
-
-// Links
-$emphasized-link-hover-darken-percentage: 15% !default;
-
-@import '~bootstrap/scss/mixins/breakpoints';
-@import '~bootstrap/scss/mixins/deprecate';
-@import '~bootstrap/scss/mixins/hover';
-@import '~bootstrap/scss/mixins/text-emphasis';
-@import '~bootstrap/scss/mixins/text-hide';
-@import '~bootstrap/scss/mixins/text-truncate';
-
-@import '~bootstrap/scss/utilities/display';
-@import '~bootstrap/scss/utilities/flex';
-@import '~bootstrap/scss/utilities/spacing';
-@import '~bootstrap/scss/utilities/text';
-
-$ddr-mat-toolbar-height: 56px !default;
-$ddr-mat-toolbar-height-sm-up: 64px !default;
+//
+// Theme vars
+//
 $ddr-mat-fab-height: 88px !default;
 $ddr-mat-sidenav-width: 300px !default;
+$ddr-mat-toolbar-height: 56px !default;
+$ddr-mat-toolbar-height-sm-up: 64px !default;
+$ddr-breakpoint-sm: 600px;
 
-html, body {
-    margin: 0;
-    padding: 0;
+//
+// General stuff
+//
+
+.d-flex {
+    display: flex !important;
+}
+
+.flex-row {
+    flex-direction: row !important;
+}
+
+.flex-column {
+    flex-direction: column !important;
+}
+
+.d-grid {
+    display: grid !important;
+    grid-gap: 1rem;
+
+    &.equal-columns {
+        grid-auto-columns: minmax(0, 1fr);
+        grid-auto-flow: column;
+    }
+}
+
+.p-3 {
+    padding: 1rem;
+}
+
+.mb-0 {
+    margin-bottom: 0;
 }
 
 html, body {
@@ -72,45 +61,41 @@ body {
     font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-ddr-mat-sidenav-toggle {
-    @extend .mr-2;
+.mat-raised-button {
+    text-transform: uppercase;
 }
 
-.mat-sidenav {
-    width: $ddr-mat-sidenav-width;
-}
-
-.mat-sidenav-content {
-
-    padding-top: $ddr-mat-toolbar-height;
-    min-height: calc(100vh - #{$ddr-mat-toolbar-height});
-
-    .mat-toolbar {
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 1;
-    }
-
-    @include media-breakpoint-up(sm, $grid-breakpoints) {
-        padding-top: $ddr-mat-toolbar-height-sm-up;
-        min-height: calc(100vh - #{$ddr-mat-toolbar-height-sm-up});
-    }
-}
-
-mat-sidenav-container.side {
+.mat-sidenav-container {
 
     ddr-mat-sidenav-toggle {
-        @extend .d-none;
+        margin-right: 1rem;
+    }
+
+    &.side {
+        ddr-mat-sidenav-toggle {
+            display: none;
+        }
+    }
+
+    .mat-sidenav {
+        min-width: $ddr-mat-sidenav-width;
     }
 
     .mat-sidenav-content {
+
+        padding-top: $ddr-mat-toolbar-height;
+        min-height: calc(100vh - #{$ddr-mat-toolbar-height});
+
         .mat-toolbar {
-            transition-duration: 400ms;
-            transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
-            transition-property: left, width;
-            left: $ddr-mat-sidenav-width;
-            width: calc(100vw - #{$ddr-mat-sidenav-width});
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 1;
+        }
+
+        @media (min-width: $ddr-breakpoint-sm) {
+            padding-top: $ddr-mat-toolbar-height-sm-up;
+            min-height: calc(100vh - #{$ddr-mat-toolbar-height-sm-up});
         }
     }
 }
@@ -126,5 +111,21 @@ mat-sidenav-container.side {
         margin-right: 1rem !important;
         margin-bottom: 1rem !important;
         z-index: 2;
+    }
+}
+
+.mat-toolbar {
+
+    @extend .mat-elevation-z1;
+
+    .spacer {
+        flex: 1 1 auto;
+    }
+}
+
+.mat-card {
+    .mat-list-item-content {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
     }
 }
