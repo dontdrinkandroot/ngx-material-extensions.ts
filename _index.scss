@@ -18,8 +18,17 @@ $ddr-mat-toolbar-height: 56px !default;
 $ddr-mat-toolbar-height-sm-up: 64px !default;
 $ddr-breakpoint-sm: 600px;
 
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
 //
-// General stuff
+// Utilities
 //
 
 .d-flex {
@@ -52,14 +61,9 @@ $ddr-breakpoint-sm: 600px;
     margin-bottom: 0;
 }
 
-html, body {
-    height: 100%;
-}
-
-body {
-    margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+//
+// Extensions
+//
 
 .mat-raised-button {
     text-transform: uppercase;
