@@ -14,7 +14,7 @@
         "@angular/common": "^14.2.0",
         "@angular/core": "^14.2.0",
         "@angular/material": "^14.2",
-        "@dontdrinkandroot/ngx-extensions": "^0.1"
+        "@dontdrinkandroot/ngx-extensions": "^0.2"
     },
     "dependencies": {
         "tslib": "^2.3.0"
@@ -38,7 +38,7 @@
         "@angular/platform-browser": "^14.2.0",
         "@angular/platform-browser-dynamic": "^14.2.0",
         "@angular/router": "^14.2.0",
-        "@dontdrinkandroot/ngx-extensions": "^0.1",
+        "@dontdrinkandroot/ngx-extensions": "^0.2",
         "@types/jasmine": "~4.0.0",
         "@typescript-eslint/eslint-plugin": "5.36.2",
         "@typescript-eslint/parser": "5.36.2",
