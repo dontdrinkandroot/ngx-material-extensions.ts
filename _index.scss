@@ -16,7 +16,11 @@ $ddr-mat-fab-height: 88px !default;
 $ddr-mat-sidenav-width: 300px !default;
 $ddr-mat-toolbar-height: 56px !default;
 $ddr-mat-toolbar-height-sm-up: 64px !default;
+// Breakpoints
 $ddr-breakpoint-sm: 600px;
+$ddr-breakpoint-md: 960px;
+$ddr-breakpoint-lg: 1280px;
+$ddr-breakpoint-xl: 1920px;
 
 html, body {
     height: 100%;
