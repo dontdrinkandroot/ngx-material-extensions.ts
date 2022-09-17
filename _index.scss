@@ -2,12 +2,88 @@
 
 @include mat.core();
 
-$ddr-mat-primary: mat.define-palette(mat.$blue-palette, 700, 300, 900) !default;
-$ddr-mat-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400) !default;
-$ddr-mat-warn: mat.define-palette(mat.$red-palette) !default;
-$ddr-mat-theme: mat.define-light-theme($ddr-mat-primary, $ddr-mat-accent, $ddr-mat-warn) !default;
+$dark-primary-text: rgba(black, 0.87) !default; // Copied
+$light-primary-text: white !default; // Copied
 
-@include mat.all-component-themes($ddr-mat-theme);
+$ddr-primary-palette: (
+        50: #e2f1fd,
+        100: #b9dcfb,
+        200: #8cc7f8,
+        300: #5db1f5,
+        400: #37a0f4,
+        500: #0090f2,
+        600: #0282e4,
+        700: #0171d1,
+        800: #0060bf,
+        900: #0041a0,
+        A100: #ff80ab,
+        A200: #ff4081,
+        A400: #f50057,
+        A700: #c51162,
+        contrast: (
+                50: $dark-primary-text,
+                100: $dark-primary-text,
+                200: $dark-primary-text,
+                300: $dark-primary-text,
+                400: $dark-primary-text,
+                500: $light-primary-text,
+                600: $light-primary-text,
+                700: $light-primary-text,
+                800: $light-primary-text,
+                900: $light-primary-text,
+                A100: $dark-primary-text,
+                A200: $light-primary-text,
+                A400: $light-primary-text,
+                A700: $light-primary-text,
+        )
+);
+
+
+$ddr-complementary-palette: (
+        50: #f9f3e1,
+        100: #f1e0b5,
+        200: #e8cc84,
+        300: #e1b854,
+        400: #dca933,
+        500: #d89b1b,
+        600: #d59014,
+        700: #cf820d,
+        800: #c97506,
+        900: #bf6000,
+        A100: #ff80ab,
+        A200: #ff4081,
+        A400: #f50057,
+        A700: #c51162,
+        contrast: (
+                50: $dark-primary-text,
+                100: $dark-primary-text,
+                200: $dark-primary-text,
+                300: $dark-primary-text,
+                400: $dark-primary-text,
+                500: $light-primary-text,
+                600: $light-primary-text,
+                700: $light-primary-text,
+                800: $light-primary-text,
+                900: $light-primary-text,
+                A100: $dark-primary-text,
+                A200: $light-primary-text,
+                A400: $light-primary-text,
+                A700: $light-primary-text,
+        )
+);
+
+$ddr-mat-primary: mat.define-palette($ddr-primary-palette, 800, 700, 900) !default;
+$ddr-mat-accent: mat.define-palette($ddr-complementary-palette) !default;
+$ddr-mat-warn: mat.define-palette(mat.$red-palette) !default;
+
+$ddr-mat-light-theme: mat.define-light-theme($ddr-mat-primary, $ddr-mat-accent, $ddr-mat-warn) !default;
+$ddr-mat-dark-theme: mat.define-dark-theme($ddr-mat-primary, $ddr-mat-accent, $ddr-mat-warn) !default;
+
+@include mat.all-component-themes($ddr-mat-light-theme);
+
+@media (prefers-color-scheme: dark) {
+    @include mat.all-component-themes($ddr-mat-dark-theme);
+}
 
 //
 // Theme vars
@@ -67,6 +143,14 @@ body {
 
 .mb-3 {
     margin-bottom: 1rem;
+}
+
+.me-2 {
+    margin-right: .5rem;
+}
+
+.me-3 {
+    margin-right: 1rem;
 }
 
 .text-center {
