@@ -2,7 +2,11 @@
     "$schema": "node_modules/ng-packagr/ng-package.schema.json",
     "dest": "dist",
     "assets": [
-        "_index.scss"
+        "_index.scss",
+        "_utilities.scss",
+        "_theme.scss",
+        "_variables.scss",
+        "_extensions.scss"
     ],
     "lib": {
         "entryFile": "public-api.ts"
