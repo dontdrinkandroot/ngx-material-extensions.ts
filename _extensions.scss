@@ -29,7 +29,6 @@ body {
                 transition-property: left, width;
                 left: $ddr-mat-sidenav-width;
                 width: calc(100vw - #{$ddr-mat-sidenav-width});
-                z-index: 99;
             }
         }
     }
