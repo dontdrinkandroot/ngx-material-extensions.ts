@@ -183,12 +183,14 @@ body {
                 transition-property: left, width;
                 left: $ddr-mat-sidenav-width;
                 width: calc(100vw - #{$ddr-mat-sidenav-width});
+                z-index: 99;
             }
         }
     }
 
     .mat-sidenav {
         min-width: $ddr-mat-sidenav-width;
+        z-index: 100;
     }
 
     .mat-sidenav-content {
