@@ -75,6 +75,10 @@ body {
 
     @extend .mat-elevation-z1;
 
+    h1 {
+        margin-right: auto;
+    }
+
     .spacer {
         flex: 1 1 auto;
     }
