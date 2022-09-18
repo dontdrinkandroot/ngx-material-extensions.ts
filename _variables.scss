@@ -1,10 +1,42 @@
+$ddr-spacer: 1rem !default;
+$ddr-spacers: (
+        0: 0,
+        1: $ddr-spacer * .25,
+        2: $ddr-spacer * .5,
+        3: $ddr-spacer,
+        4: $ddr-spacer * 1.5,
+        5: $ddr-spacer * 3,
+) !default;
+
+$ddr-paddings: (
+        'p': 'padding',
+        'ps': 'padding-left',
+        'pe': 'padding-right',
+        'pt': 'padding-top',
+        'pb': 'padding-bottom'
+) !default;
+
+$ddr-margins: (
+        'm': 'margin',
+        'ms': 'margin-left',
+        'me': 'margin-right',
+        'mt': 'margin-top',
+        'mb': 'margin-bottom'
+) !default;
+
 $ddr-mat-fab-height: 88px !default;
 $ddr-mat-sidenav-width: 300px !default;
 $ddr-mat-toolbar-height: 56px !default;
 $ddr-mat-toolbar-height-sm-up: 64px !default;
 
-// Breakpoints
 $ddr-breakpoint-sm: 600px;
 $ddr-breakpoint-md: 960px;
 $ddr-breakpoint-lg: 1280px;
 $ddr-breakpoint-xl: 1920px;
+$ddr-breakpoints: (
+        xs: 0,
+        sm: $ddr-breakpoint-sm,
+        md: $ddr-breakpoint-md,
+        lg: $ddr-breakpoint-lg,
+        xl: $ddr-breakpoint-xl
+) !default;
