@@ -2,12 +2,13 @@
 
 @include mat.core();
 
-$ddr-mat-primary: mat.define-palette(mat.$blue-palette, 700, 600, 800) !default;
+$ddr-mat-primary-light: mat.define-palette(mat.$blue-palette, 700, 600, 800) !default;
+$ddr-mat-primary-dark: mat.define-palette(mat.$blue-palette, 600, 500, 700) !default;
 $ddr-mat-accent: mat.define-palette(mat.$pink-palette) !default;
 $ddr-mat-warn: mat.define-palette(mat.$red-palette) !default;
 
-$ddr-mat-light-theme: mat.define-light-theme($ddr-mat-primary, $ddr-mat-accent, $ddr-mat-warn) !default;
-$ddr-mat-dark-theme: mat.define-dark-theme($ddr-mat-primary, $ddr-mat-accent, $ddr-mat-warn) !default;
+$ddr-mat-light-theme: mat.define-light-theme($ddr-mat-primary-light, $ddr-mat-accent, $ddr-mat-warn) !default;
+$ddr-mat-dark-theme: mat.define-dark-theme($ddr-mat-primary-dark, $ddr-mat-accent, $ddr-mat-warn) !default;
 
 @include mat.all-component-themes($ddr-mat-light-theme);
 
