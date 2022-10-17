@@ -7,9 +7,11 @@ import {GridTileLazyImageContainerDirective} from './gridlist/grid-tile-lazy-ima
 import {GridTileLazyImgDirective} from './gridlist/grid-tile-lazy-img.directive';
 import {SidenavContainerComponent} from './sidenav/sidenav-container.component';
 import {CommonModule} from '@angular/common';
+import {FilterComponent} from './filter/filter.component';
 
 @NgModule({
     declarations: [
+        FilterComponent,
         SidenavToggleComponent,
         GridTileLazyImageContainerDirective,
         GridTileLazyImgDirective,
