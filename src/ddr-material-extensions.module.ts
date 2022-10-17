@@ -8,6 +8,8 @@ import {GridTileLazyImgDirective} from './gridlist/grid-tile-lazy-img.directive'
 import {SidenavContainerComponent} from './sidenav/sidenav-container.component';
 import {CommonModule} from '@angular/common';
 import {FilterComponent} from './filter/filter.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 @NgModule({
     declarations: [
@@ -21,7 +23,9 @@ import {FilterComponent} from './filter/filter.component';
         CommonModule,
         MatSidenavModule,
         MatIconModule,
-        MatButtonModule
+        MatButtonModule,
+        MatFormFieldModule,
+        ReactiveFormsModule
     ],
     exports: [
         SidenavToggleComponent,

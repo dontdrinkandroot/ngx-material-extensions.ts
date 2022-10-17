@@ -28,9 +28,9 @@ export class FilterComponent implements OnInit, OnDestroy, AfterContentInit
     public bouncePeriod = 500;
 
     @ViewChild('input', {static: true})
-    public inputElement: ElementRef;
+    public inputElement!: ElementRef;
 
-    private valueChangesSubscription: Subscription;
+    private valueChangesSubscription!: Subscription;
 
     /**
      * @override
@@ -62,6 +62,6 @@ export class FilterComponent implements OnInit, OnDestroy, AfterContentInit
     public clear()
     {
         this.formControl.setValue(null);
-        this.onFilterChanged.emit(null);
+        this.onFilterChanged.emit(undefined);
     }
 }
