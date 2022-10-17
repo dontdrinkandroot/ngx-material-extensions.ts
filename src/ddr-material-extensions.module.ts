@@ -10,6 +10,7 @@ import {CommonModule} from '@angular/common';
 import {FilterComponent} from './filter/filter.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
     declarations: [
@@ -23,11 +24,13 @@ import {MatFormFieldModule} from '@angular/material/form-field';
         CommonModule,
         MatSidenavModule,
         MatIconModule,
+        MatInputModule,
         MatButtonModule,
         MatFormFieldModule,
         ReactiveFormsModule
     ],
     exports: [
+        FilterComponent,
         SidenavToggleComponent,
         GridTileLazyImageContainerDirective,
         GridTileLazyImgDirective,

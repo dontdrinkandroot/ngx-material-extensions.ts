@@ -86,4 +86,37 @@ body {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
+
+    .mat-card-content {
+        .mat-nav-list, .mat-list {
+            @extend .pt-0;
+        }
+    }
+}
+
+ddr-filter {
+
+    flex: 1;
+    font-size: 14px;
+
+    .mat-form-field {
+
+        width: 100%;
+
+        .mat-form-field-outline {
+            background-color: white;
+        }
+
+        .mat-form-field-wrapper {
+            padding-bottom: 0;
+        }
+
+        .mat-form-field-infix {
+            border-block-start-width: 5px;
+        }
+
+        .mat-input-element {
+            font-size: 16px;
+        }
+    }
 }
