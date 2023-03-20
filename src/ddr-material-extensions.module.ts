@@ -11,6 +11,7 @@ import {FilterComponent} from './filter/filter.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import {MatInputModule} from '@angular/material/input';
     ],
     imports: [
         CommonModule,
+        MatCardModule,
         MatSidenavModule,
         MatIconModule,
         MatInputModule,

@@ -45,6 +45,7 @@ body {
     .mat-sidenav-content {
 
         padding-top: $ddr-mat-toolbar-height;
+        min-height: calc(100vh - #{$ddr-mat-toolbar-height});
 
         .mat-toolbar {
             position: fixed;
@@ -55,6 +56,7 @@ body {
 
         @media (min-width: $ddr-breakpoint-sm) {
             padding-top: $ddr-mat-toolbar-height-sm-up;
+            min-height: calc(100vh - #{$ddr-mat-toolbar-height-sm-up});
         }
     }
 }
@@ -93,8 +95,12 @@ ddr-filter {
     .mat-mdc-form-field {
         width: 100%;
     }
+}
 
-    .mat-mdc-form-field-subscript-wrapper {
-        display: none;
+.mat-mdc-nav-list {
+    .mat-mdc-list-item {
+        a.mat-mdc-list-item-title {
+            text-decoration: none;
+        }
     }
 }
