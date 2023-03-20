@@ -8,8 +8,10 @@
         "inlineSources": true,
         "types": []
     },
+    "angularCompilerOptions": {
+        "preserveSymlinks": true
+    },
     "exclude": [
-        "test.ts",
         "**/*.spec.ts"
     ]
 }
