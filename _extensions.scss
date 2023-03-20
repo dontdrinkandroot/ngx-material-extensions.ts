@@ -63,7 +63,7 @@ body {
 
     height: $ddr-mat-fab-height;
 
-    .mat-fab {
+    .mat-mdc-fab {
         position: fixed !important;
         right: 0;
         bottom: 0;
@@ -86,48 +86,15 @@ body {
     }
 }
 
-.mat-card {
-    .mat-list-item-content {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-    }
-
-    .mat-card-content {
-        .mat-nav-list, .mat-list {
-            @extend .pt-0;
-        }
-    }
-}
-
 ddr-filter {
 
-    flex: 1;
-    font-size: 14px;
+    width: 100%;
 
-    .mat-form-field {
-
+    .mat-mdc-form-field {
         width: 100%;
+    }
 
-        .mat-form-field-outline {
-            background-color: white;
-        }
-
-        @media (prefers-color-scheme: dark) {
-            .mat-form-field-outline {
-                background-color: #424242;
-            }
-        }
-
-        .mat-form-field-wrapper {
-            padding-bottom: 0;
-        }
-
-        .mat-form-field-infix {
-            border-block-start-width: 5px;
-        }
-
-        .mat-input-element {
-            font-size: 16px;
-        }
+    .mat-mdc-form-field-subscript-wrapper {
+        display: none;
     }
 }

@@ -5,13 +5,24 @@
 $ddr-mat-primary-light: mat.define-palette(mat.$blue-palette, 700, 600, 800) !default;
 $ddr-mat-primary-dark: mat.define-palette(mat.$blue-palette, 600, 500, 700) !default;
 $ddr-mat-accent: mat.define-palette(mat.$pink-palette) !default;
-$ddr-mat-warn: mat.define-palette(mat.$red-palette) !default;
+$typography: mat.define-typography-config() !default;
 
-$ddr-mat-light-theme: mat.define-light-theme($ddr-mat-primary-light, $ddr-mat-accent, $ddr-mat-warn) !default;
-$ddr-mat-dark-theme: mat.define-dark-theme($ddr-mat-primary-dark, $ddr-mat-accent, $ddr-mat-warn) !default;
+$ddr-mat-light-theme: mat.define-light-theme((
+        color: (
+                primary: $ddr-mat-primary-light,
+                accent: $ddr-mat-accent,
+        ),
+        typography: $typography
+)) !default;
+$ddr-mat-dark-theme: mat.define-dark-theme((
+        color: (
+                primary: $ddr-mat-primary-dark,
+                accent: $ddr-mat-accent,
+        ),
+        typography: $typography
+)) !default;
 
 @include mat.all-component-themes($ddr-mat-light-theme);
-
 @media (prefers-color-scheme: dark) {
-    @include mat.all-component-themes($ddr-mat-dark-theme);
+    @include mat.all-component-colors($ddr-mat-dark-theme);
 }
