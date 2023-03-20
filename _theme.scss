@@ -26,3 +26,5 @@ $ddr-mat-dark-theme: mat.define-dark-theme((
 @media (prefers-color-scheme: dark) {
     @include mat.all-component-colors($ddr-mat-dark-theme);
 }
+
+@include mat.all-component-typographies($typography);
