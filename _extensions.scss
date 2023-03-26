@@ -81,6 +81,8 @@ body {
 
     h1 {
         margin-right: auto;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .spacer {
