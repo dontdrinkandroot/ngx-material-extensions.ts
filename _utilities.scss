@@ -28,11 +28,35 @@
     }
 }
 
+@each $suffix, $size in $ddr-spacers {
+    .px-#{$suffix} {
+        padding-left: #{$size} !important;
+        padding-right: #{$size} !important;
+    }
+
+    .py-#{$suffix} {
+        padding-top: #{$size} !important;
+        padding-bottom: #{$size} !important;
+    }
+}
+
 @each $prefix, $property in $ddr-margins {
     @each $suffix, $size in $ddr-spacers {
         .#{$prefix}-#{$suffix} {
             #{$property}: #{$size} !important;
         }
+    }
+}
+
+@each $suffix, $size in $ddr-spacers {
+    .mx-#{$suffix} {
+        margin-left: #{$size} !important;
+        margin-right: #{$size} !important;
+    }
+
+    .my-#{$suffix} {
+        margin-top: #{$size} !important;
+        margin-bottom: #{$size} !important;
     }
 }
 
