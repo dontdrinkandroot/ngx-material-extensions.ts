@@ -10,6 +10,10 @@
     flex-direction: column !important;
 }
 
+.flex-auto {
+    flex: 1 1 auto !important;
+}
+
 .d-grid {
     display: grid !important;
     grid-gap: 1rem;
@@ -74,4 +78,25 @@
 
 .text-muted {
     color: #9e9e9e !important;
+}
+
+.text-overflow-ellipsis {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+.sticky-top {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1 !important;
+}
+
+.list-unstyled {
+    list-style-type: none !important;
+    padding-left: 0 !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
 }

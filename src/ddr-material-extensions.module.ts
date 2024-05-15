@@ -12,6 +12,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,7 @@ import {MatCardModule} from '@angular/material/card';
         SidenavToggleComponent,
         GridTileLazyImageContainerDirective,
         GridTileLazyImgDirective,
-        SidenavContainerComponent
+        SidenavContainerComponent,
     ],
     imports: [
         CommonModule,
@@ -29,6 +30,7 @@ import {MatCardModule} from '@angular/material/card';
         MatInputModule,
         MatButtonModule,
         MatFormFieldModule,
+        MatToolbarModule,
         ReactiveFormsModule
     ],
     exports: [
@@ -36,7 +38,7 @@ import {MatCardModule} from '@angular/material/card';
         SidenavToggleComponent,
         GridTileLazyImageContainerDirective,
         GridTileLazyImgDirective,
-        SidenavContainerComponent
+        SidenavContainerComponent,
     ]
 })
 export class DdrMaterialExtensionsModule

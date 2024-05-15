@@ -1,11 +1,11 @@
 $ddr-spacer: 1rem !default;
 $ddr-spacers: (
-        0: 0,
-        1: $ddr-spacer * .25,
-        2: $ddr-spacer * .5,
-        3: $ddr-spacer,
-        4: $ddr-spacer * 1.5,
-        5: $ddr-spacer * 3,
+        none: 0,
+        quarter: $ddr-spacer * .25,
+        half: $ddr-spacer * .5,
+        full: $ddr-spacer,
+        one-half: $ddr-spacer * 1.5,
+        double: $ddr-spacer * 2
 ) !default;
 
 $ddr-paddings: (
@@ -24,10 +24,7 @@ $ddr-margins: (
         'mb': 'margin-bottom'
 ) !default;
 
-$ddr-mat-fab-height: 88px !default;
-$ddr-mat-sidenav-width: 300px !default;
-$ddr-mat-toolbar-height: 56px !default;
-$ddr-mat-toolbar-height-sm-up: 64px !default;
+$ddr-mat-fab-height: 56px !default;
 
 $ddr-breakpoint-sm: 600px;
 $ddr-breakpoint-md: 960px;

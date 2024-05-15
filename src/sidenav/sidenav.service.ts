@@ -88,4 +88,11 @@ export class SidenavService
     {
         return this.opened$;
     }
+
+    public watchToggleVisible()
+    {
+        return this.screenLarge$.pipe(
+            map(large => !large || !this.stayOpenOnLargeScreen)
+        );
+    }
 }

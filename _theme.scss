@@ -1,30 +1,42 @@
+@use '@angular/material-experimental' as matx;
 @use '@angular/material' as mat;
 
 @include mat.core();
 
-$ddr-mat-primary-light: mat.define-palette(mat.$blue-palette, 700, 600, 800) !default;
-$ddr-mat-primary-dark: mat.define-palette(mat.$blue-palette, 600, 500, 700) !default;
+$ddr-mat-primary-light: matx.$m3-azure-palette !default;
+$ddr-mat-primary-dark: matx.$m3-azure-palette !default;
 $ddr-mat-accent: mat.define-palette(mat.$pink-palette) !default;
-$typography: mat.define-typography-config() !default;
 
-$ddr-mat-light-theme: mat.define-light-theme((
+$ddr-light-theme: matx.define-theme((
         color: (
                 primary: $ddr-mat-primary-light,
-                accent: $ddr-mat-accent,
         ),
-        typography: $typography
-)) !default;
-$ddr-mat-dark-theme: mat.define-dark-theme((
-        color: (
-                primary: $ddr-mat-primary-dark,
-                accent: $ddr-mat-accent,
-        ),
-        typography: $typography
 )) !default;
 
-@include mat.all-component-themes($ddr-mat-light-theme);
-@media (prefers-color-scheme: dark) {
-    @include mat.all-component-colors($ddr-mat-dark-theme);
+$ddr-dark-theme: matx.define-theme((
+        color: (
+                theme-type: dark,
+                primary: $ddr-mat-primary-dark,
+        ),
+)) !default;
+
+html {
+    @include mat.all-component-themes($ddr-light-theme);
 }
 
-@include mat.all-component-typographies($typography);
+@media (prefers-color-scheme: dark) {
+    html {
+        @include mat.all-component-colors($ddr-dark-theme);
+    }
+}
+
+@include mat.typography-hierarchy($ddr-light-theme);
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
