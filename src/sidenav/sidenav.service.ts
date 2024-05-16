@@ -1,9 +1,10 @@
-import {Injectable} from '@angular/core';
-import {MatDrawerMode, MatDrawerToggleResult, MatSidenav} from '@angular/material/sidenav';
+import {Inject, Injectable} from '@angular/core';
+import {MatDrawerMode, MatDrawerToggleResult, MatSidenav, MatSidenavContent} from '@angular/material/sidenav';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {NavigationStart, Router} from '@angular/router';
+import {DOCUMENT} from '@angular/common';
 
 @Injectable({
     providedIn: 'root'
@@ -11,6 +12,8 @@ import {NavigationStart, Router} from '@angular/router';
 export class SidenavService
 {
     private sidenav!: MatSidenav;
+
+    private sidenavContent!: MatSidenavContent;
 
     private stayOpenOnLargeScreen = false;
 
@@ -26,7 +29,13 @@ export class SidenavService
 
     private opened$: Observable<boolean>;
 
-    constructor(private breakpointObserver: BreakpointObserver, private router: Router)
+    private sidenavContentScrolled$ = new BehaviorSubject<boolean>(false);
+
+    constructor(
+        private breakpointObserver: BreakpointObserver,
+        private router: Router,
+        @Inject(DOCUMENT) private document: Document,
+    )
     {
         this.screenLarge$ = this.breakpointObserver.observe(this.largeBreakpoints).pipe(
             map(result => result.matches)
@@ -48,6 +57,18 @@ export class SidenavService
     {
         this.sidenav = sidenav;
     }
+
+    public setSidenavContent(sidenavContent: MatSidenavContent): void
+    {
+        this.sidenavContent = sidenavContent;
+        this.sidenavContent.elementScrolled().pipe(
+            map(() => this.sidenavContent.measureScrollOffset('top') > 0)
+        ).subscribe(scrolled => {
+            this.document.body.classList.toggle('scrolled', scrolled);
+            this.sidenavContentScrolled$.next(scrolled);
+        });
+    }
+
 
     public getStayOpenOnLargeScreen(): boolean
     {
@@ -94,5 +115,10 @@ export class SidenavService
         return this.screenLarge$.pipe(
             map(large => !large || !this.stayOpenOnLargeScreen)
         );
+    }
+
+    public watchContentScrolled()
+    {
+        return this.sidenavContentScrolled$.asObservable();
     }
 }

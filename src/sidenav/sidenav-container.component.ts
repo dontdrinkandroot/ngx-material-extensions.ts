@@ -1,9 +1,7 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
 import {MatDrawerMode, MatSidenav, MatSidenavContent} from '@angular/material/sidenav';
 import {SidenavService} from './sidenav.service';
-import {BreakpointObserver} from '@angular/cdk/layout';
-import {distinctUntilChanged, Observable, startWith, Subscription} from 'rxjs';
-import {map} from 'rxjs/operators';
+import {Observable, Subscription} from 'rxjs';
 
 @Component({
     selector: 'ddr-mat-sidenav-container',
@@ -26,7 +24,9 @@ export class SidenavContainerComponent implements OnInit, OnChanges, OnDestroy
 
     private scrollSubscription!: Subscription;
 
-    constructor(private sidenavService: SidenavService, private breakpointObserver: BreakpointObserver)
+    constructor(
+        private sidenavService: SidenavService,
+    )
     {
     }
 
@@ -44,13 +44,7 @@ export class SidenavContainerComponent implements OnInit, OnChanges, OnDestroy
     public ngOnInit(): void
     {
         this.sidenavService.setSidenav(this.sidenav);
-        this.scrollSubscription = this.sidenavContent.elementScrolled().pipe(
-            startWith(false),
-            map(() => this.sidenavContent.measureScrollOffset('top') > 0),
-            distinctUntilChanged(),
-        ).subscribe(
-            (scrolled) => this.sidenavContent.getElementRef().nativeElement.classList.toggle('scrolled', scrolled)
-        );
+        this.sidenavService.setSidenavContent(this.sidenavContent);
     }
 
     /**
