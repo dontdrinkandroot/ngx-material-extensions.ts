@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {MatDrawerMode, MatDrawerToggleResult, MatSidenav, MatSidenavContent} from '@angular/material/sidenav';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, distinctUntilChanged, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {NavigationStart, Router} from '@angular/router';
 import {DOCUMENT} from '@angular/common';
@@ -62,7 +62,8 @@ export class SidenavService
     {
         this.sidenavContent = sidenavContent;
         this.sidenavContent.elementScrolled().pipe(
-            map(() => this.sidenavContent.measureScrollOffset('top') > 0)
+            map(() => this.sidenavContent.measureScrollOffset('top') > 0),
+            distinctUntilChanged()
         ).subscribe(scrolled => {
             this.document.body.classList.toggle('scrolled', scrolled);
             this.sidenavContentScrolled$.next(scrolled);

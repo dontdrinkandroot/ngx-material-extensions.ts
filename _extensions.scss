@@ -3,20 +3,15 @@
     height: 100vh;
 
     .mat-sidenav {
+
         &.mat-drawer-over {
             max-width: 90vw;
-
-            .mat-mdc-nav-list {
-                margin-right: 1rem;
-            }
-        }
-
-        &.mat-drawer-side {
-            padding-right: 1rem;
         }
 
         .mat-mdc-nav-list {
             .mat-mdc-list-item {
+                width: auto;
+                margin-right: .5rem;
                 border-top-left-radius: 0;
                 border-bottom-left-radius: 0;
             }
