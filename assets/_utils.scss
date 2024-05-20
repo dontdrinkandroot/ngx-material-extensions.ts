@@ -1,0 +1,49 @@
+@import "./utils/display";
+@import "./utils/spacing";
+
+.flex-row {
+    flex-direction: row !important;
+}
+
+.flex-column {
+    flex-direction: column !important;
+}
+
+.flex-auto {
+    flex: 1 1 auto !important;
+}
+
+.d-grid {
+    grid-gap: 1rem;
+
+    &.equal-columns {
+        grid-auto-columns: minmax(0, 1fr);
+        grid-auto-flow: column;
+    }
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.text-muted {
+    color: #9e9e9e !important;
+}
+
+.text-overflow-ellipsis {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+
+.list-unstyled {
+    list-style-type: none !important;
+    padding-left: 0 !important;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
+}

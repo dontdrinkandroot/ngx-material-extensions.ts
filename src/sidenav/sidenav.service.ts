@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
-import {MatDrawerMode, MatDrawerToggleResult, MatSidenav, MatSidenavContent} from '@angular/material/sidenav';
+import {MatDrawerMode, MatDrawerToggleResult, MatSidenav} from '@angular/material/sidenav';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {BehaviorSubject, distinctUntilChanged, Observable} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {NavigationStart, Router} from '@angular/router';
 import {DOCUMENT} from '@angular/common';
@@ -9,13 +9,10 @@ import {DOCUMENT} from '@angular/common';
 @Injectable({
     providedIn: 'root'
 })
-export class SidenavService
-{
+export class SidenavService {
     private sidenav!: MatSidenav;
 
-    private sidenavContent!: MatSidenavContent;
-
-    private stayOpenOnLargeScreen = false;
+    private stayOpenOnLargeScreen = true;
 
     private largeBreakpoints = [
         Breakpoints.Medium,
@@ -35,8 +32,7 @@ export class SidenavService
         private breakpointObserver: BreakpointObserver,
         private router: Router,
         @Inject(DOCUMENT) private document: Document,
-    )
-    {
+    ) {
         this.screenLarge$ = this.breakpointObserver.observe(this.largeBreakpoints).pipe(
             map(result => result.matches)
         );
@@ -53,36 +49,20 @@ export class SidenavService
         });
     }
 
-    public setSidenav(sidenav: MatSidenav): void
-    {
+    public setSidenav(sidenav: MatSidenav): void {
         this.sidenav = sidenav;
     }
 
-    public setSidenavContent(sidenavContent: MatSidenavContent): void
-    {
-        this.sidenavContent = sidenavContent;
-        this.sidenavContent.elementScrolled().pipe(
-            map(() => this.sidenavContent.measureScrollOffset('top') > 0),
-            distinctUntilChanged()
-        ).subscribe(scrolled => {
-            this.document.body.classList.toggle('scrolled', scrolled);
-            this.sidenavContentScrolled$.next(scrolled);
-        });
-    }
 
-
-    public getStayOpenOnLargeScreen(): boolean
-    {
+    public getStayOpenOnLargeScreen(): boolean {
         return this.stayOpenOnLargeScreen;
     }
 
-    public setStayOpenOnLargeScreen(value: boolean): void
-    {
+    public setStayOpenOnLargeScreen(value: boolean): void {
         this.stayOpenOnLargeScreen = value;
     }
 
-    public toggle(): Promise<MatDrawerToggleResult>
-    {
+    public toggle(): Promise<MatDrawerToggleResult> {
         if (null == this.sidenav) {
             return Promise.reject('No MatSidenav found. Use setSidenav() of SidenavService');
         }
@@ -94,32 +74,27 @@ export class SidenavService
         return Promise.resolve(this.sidenav.opened ? 'open' : 'close');
     }
 
-    public closeSidebar(): void
-    {
+    public closeSidebar(): void {
         if (!(this.stayOpenOnLargeScreen && this.breakpointObserver.isMatched(this.largeBreakpoints))) {
             this.sidenav.close();
         }
     }
 
-    public getModeObservable(): Observable<MatDrawerMode>
-    {
+    public getModeObservable(): Observable<MatDrawerMode> {
         return this.mode$;
     }
 
-    public getOpenedObservable(): Observable<boolean>
-    {
+    public getOpenedObservable(): Observable<boolean> {
         return this.opened$;
     }
 
-    public watchToggleVisible()
-    {
+    public watchToggleVisible() {
         return this.screenLarge$.pipe(
             map(large => !large || !this.stayOpenOnLargeScreen)
         );
     }
 
-    public watchContentScrolled()
-    {
+    public watchContentScrolled() {
         return this.sidenavContentScrolled$.asObservable();
     }
 }

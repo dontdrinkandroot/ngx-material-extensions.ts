@@ -1,0 +1,145 @@
+@use '@angular/material-experimental' as matx;
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+$ddr-mat-primary: matx.$m3-azure-palette !default;
+$ddr-mat-tertiary: matx.$m3-magenta-palette !default;
+
+$ddr-light-theme: matx.define-theme((
+        color: (
+                primary: $ddr-mat-primary,
+                tertiary: $ddr-mat-tertiary,
+        ),
+)) !default;
+
+$ddr-dark-theme: matx.define-theme((
+        color: (
+                theme-type: dark,
+                primary: $ddr-mat-primary,
+                tertiary: $ddr-mat-tertiary,
+        ),
+)) !default;
+
+html {
+    @include mat.all-component-themes($ddr-light-theme);
+
+    &.mat-secondary {
+        @include mat.button-color($ddr-light-theme, $color-variant: secondary);
+    }
+
+    &.mat-tertiary {
+        @include mat.button-color($ddr-light-theme, $color-variant: tertiary);
+    }
+
+    &.mat-error {
+        @include mat.button-color($ddr-light-theme, $color-variant: error);
+    }
+
+    @media (prefers-color-scheme: dark) {
+        @include mat.all-component-colors($ddr-dark-theme);
+    }
+}
+
+.mat-mdc-button {
+    &.mat-secondary {
+        @include mat.button-color($ddr-light-theme, $color-variant: secondary);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: secondary);
+        }
+    }
+
+    &.mat-tertiary {
+        @include mat.button-color($ddr-light-theme, $color-variant: tertiary);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: tertiary);
+        }
+    }
+
+    &.mat-error {
+        @include mat.button-color($ddr-light-theme, $color-variant: error);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: error);
+        }
+    }
+}
+
+.mat-mdc-raised-button {
+    &.mat-secondary {
+        @include mat.button-color($ddr-light-theme, $color-variant: secondary);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: secondary);
+        }
+    }
+
+    &.mat-tertiary {
+        @include mat.button-color($ddr-light-theme, $color-variant: tertiary);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: tertiary);
+        }
+    }
+
+    &.mat-error {
+        @include mat.button-color($ddr-light-theme, $color-variant: error);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: error);
+        }
+    }
+}
+
+.mat-mdc-outlined-button {
+    &.mat-secondary {
+        @include mat.button-color($ddr-light-theme, $color-variant: secondary);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: secondary);
+        }
+    }
+
+    &.mat-tertiary {
+        @include mat.button-color($ddr-light-theme, $color-variant: tertiary);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: tertiary);
+        }
+    }
+
+    &.mat-error {
+        @include mat.button-color($ddr-light-theme, $color-variant: error);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: error);
+        }
+    }
+}
+
+.mat-mdc-unelevated-button {
+    &.mat-secondary {
+        @include mat.button-color($ddr-light-theme, $color-variant: secondary);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: secondary);
+        }
+    }
+
+    &.mat-tertiary {
+        @include mat.button-color($ddr-light-theme, $color-variant: tertiary);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: tertiary);
+        }
+    }
+
+    &.mat-error {
+        @include mat.button-color($ddr-light-theme, $color-variant: error);
+        @media (prefers-color-scheme: dark) {
+            @include mat.button-color($ddr-dark-theme, $color-variant: error);
+        }
+    }
+}
+
+@include mat.typography-hierarchy($ddr-light-theme);
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

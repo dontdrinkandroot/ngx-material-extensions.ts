@@ -1,6 +1,6 @@
-.mat-sidenav-container {
+@use '@angular/material' as mat;
 
-    height: 100vh;
+.mat-sidenav-container {
 
     .mat-sidenav {
 
@@ -16,6 +16,12 @@
                 border-bottom-left-radius: 0;
             }
         }
+
+        .ddr-mat-toolbar-fixed-top-container {
+            .mat-toolbar {
+                width: 360px;
+            }
+        }
     }
 
     .mat-sidenav-content {
@@ -23,7 +29,7 @@
     }
 }
 
-.ddr-mat-fab-container {
+.ddr-mat-fab-fixed-container {
 
     height: calc($ddr-mat-fab-height + 2rem);
 
@@ -46,6 +52,19 @@
     }
 }
 
+.ddr-mat-toolbar-fixed-top-container {
+    .mat-toolbar {
+        position: fixed;
+        top: 0;
+        z-index: 2;
+    }
+
+    height: var(--mat-toolbar-mobile-height);
+    @media (min-width: $ddr-breakpoint-sm) {
+        height: var(--mat-toolbar-standard-height);
+    }
+}
+
 ddr-filter {
 
     width: 100%;
@@ -57,4 +76,15 @@ ddr-filter {
 
 p.mat-mdc-list-item-line {
     margin-bottom: 0;
+}
+
+body.ddr-mat-scrolled {
+    .ddr-mat-toolbar-fixed-top-container {
+        .mat-toolbar {
+            background: mat.get-theme-color($ddr-light-theme, 'surface-container');
+            @media (prefers-color-scheme: dark) {
+                background: mat.get-theme-color($ddr-dark-theme, 'surface-container');
+            }
+        }
+    }
 }

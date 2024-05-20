@@ -1,0 +1,37 @@
+@function next-breakpoint($breakpoint) {
+    $breakpoints: map-keys($ddr-breakpoints);
+    $index: index($breakpoints, $breakpoint);
+    @if $index < length($breakpoints) {
+        @return map-get($ddr-breakpoints, nth($breakpoints, $index + 1));
+    }
+    @return null;
+}
+
+@each $display, $value in $ddr-displays {
+    .d-#{$display} {
+        display: $value !important;
+    }
+
+    @each $breakpoint, $size in $ddr-breakpoints {
+        .d-min-#{$breakpoint}-#{$display} {
+            @media (min-width: $size) {
+                display: $value !important;
+            }
+        }
+
+        .d-max-#{$breakpoint}-#{$display} {
+            @media (max-width: $size) {
+                display: $value !important;
+            }
+        }
+
+        .d-#{$breakpoint}-#{$display} {
+            $next: next-breakpoint($breakpoint);
+            @if $next {
+                @media (min-width: $size) and (max-width: $next) {
+                    display: $value !important;
+                }
+            }
+        }
+    }
+}

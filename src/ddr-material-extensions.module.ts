@@ -1,4 +1,4 @@
-import {NgModule} from '@angular/core';
+import {ENVIRONMENT_INITIALIZER, inject, NgModule} from '@angular/core';
 import {SidenavToggleComponent} from './sidenav/sidenav-toggle.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
@@ -13,14 +13,20 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {DDR_MATERIAL_EXTENSIONS_THEME} from "./theme/theme-config";
+import {ThemeScrollService} from "./theme/theme-scroll.service";
+import {ToolbarFixedTopDirective} from "./toolbar/toolbar-fixed-top.directive";
+import {FabFixedDirective} from "./button/fab-fixed.directive";
 
 @NgModule({
     declarations: [
+        FabFixedDirective,
         FilterComponent,
         SidenavToggleComponent,
         GridTileLazyImageContainerDirective,
         GridTileLazyImgDirective,
         SidenavContainerComponent,
+        ToolbarFixedTopDirective
     ],
     imports: [
         CommonModule,
@@ -34,11 +40,33 @@ import {MatToolbarModule} from '@angular/material/toolbar';
         ReactiveFormsModule
     ],
     exports: [
+        FabFixedDirective,
         FilterComponent,
         SidenavToggleComponent,
         GridTileLazyImageContainerDirective,
         GridTileLazyImgDirective,
         SidenavContainerComponent,
+        ToolbarFixedTopDirective
+    ],
+    providers: [
+        ThemeScrollService,
+        {
+            provide: ENVIRONMENT_INITIALIZER,
+            multi: true,
+            useValue() {
+                inject(ThemeScrollService).init()
+            }
+        },
+        {
+            provide: DDR_MATERIAL_EXTENSIONS_THEME,
+            multi: false,
+            useValue: {
+                themeColorLight: '#fdfbff',
+                themeColorDark: '#1a1b1f',
+                themeColorLightScrolled: '#efedf1',
+                themeColorDarkScrolled: '#1e1f23',
+            }
+        }
     ]
 })
 export class DdrMaterialExtensionsModule

@@ -24,14 +24,29 @@ $ddr-margins: (
         'mb': 'margin-bottom'
 ) !default;
 
+$ddr-displays: (
+        none: none,
+        inline: inline,
+        inline-block: inline-block,
+        block: block,
+        grid: grid,
+        inline-grid: inline-grid,
+        table: table,
+        table-cell: table-cell,
+        table-row: table-row,
+        flex: flex,
+        inline-flex: inline-flex
+) !default;
+
 $ddr-mat-fab-height: 56px !default;
 
+$ddr-breakpoint-xs: 0;
 $ddr-breakpoint-sm: 600px;
 $ddr-breakpoint-md: 960px;
 $ddr-breakpoint-lg: 1280px;
 $ddr-breakpoint-xl: 1920px;
 $ddr-breakpoints: (
-        xs: 0,
+        xs: $ddr-breakpoint-xs,
         sm: $ddr-breakpoint-sm,
         md: $ddr-breakpoint-md,
         lg: $ddr-breakpoint-lg,

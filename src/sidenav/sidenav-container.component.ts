@@ -1,5 +1,5 @@
 import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {MatDrawerMode, MatSidenav, MatSidenavContent} from '@angular/material/sidenav';
+import {MatDrawerMode, MatSidenav} from '@angular/material/sidenav';
 import {SidenavService} from './sidenav.service';
 import {Observable, Subscription} from 'rxjs';
 
@@ -12,11 +12,8 @@ export class SidenavContainerComponent implements OnInit, OnChanges, OnDestroy
     @ViewChild('sidenav', {static: true})
     public sidenav!: MatSidenav;
 
-    @ViewChild('sidenavContent', {static: true})
-    public sidenavContent!: MatSidenavContent;
-
     @Input()
-    public stayOpenOnLargeScreen = false;
+    public stayOpenOnLargeScreen = true;
 
     public mode$: Observable<MatDrawerMode> = this.sidenavService.getModeObservable();
 
@@ -44,7 +41,6 @@ export class SidenavContainerComponent implements OnInit, OnChanges, OnDestroy
     public ngOnInit(): void
     {
         this.sidenavService.setSidenav(this.sidenav);
-        this.sidenavService.setSidenavContent(this.sidenavContent);
     }
 
     /**
