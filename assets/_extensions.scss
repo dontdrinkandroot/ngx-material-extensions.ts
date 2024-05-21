@@ -16,16 +16,30 @@
                 border-bottom-left-radius: 0;
             }
         }
-
-        .ddr-mat-toolbar-fixed-top-container {
-            .mat-toolbar {
-                width: 360px;
-            }
-        }
     }
 
     .mat-sidenav-content {
         min-height: 100vh;
+    }
+
+    &.side {
+        .mat-sidenav {
+            .ddr-mat-toolbar-fixed-top-container {
+                .mat-toolbar {
+                    width: 360px;
+                }
+            }
+        }
+
+        .mat-sidenav-content {
+            .ddr-mat-toolbar-fixed-top-container {
+                .mat-toolbar {
+                    left: 360px;
+                    right: 0;
+                    width: auto;
+                }
+            }
+        }
     }
 }
 
