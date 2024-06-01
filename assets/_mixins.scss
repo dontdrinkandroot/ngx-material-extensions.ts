@@ -1,0 +1,11 @@
+@mixin ddr-mat-mobile {
+    @media (max-width: #{$ddr-breakpoint-md - 1}) {
+        @content;
+    }
+}
+
+@mixin ddr-mat-desktop {
+    @media (min-width: #{$ddr-breakpoint-md}) {
+        @content;
+    }
+}

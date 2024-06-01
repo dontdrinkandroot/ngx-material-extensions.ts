@@ -8,7 +8,7 @@
             max-width: 90vw;
         }
 
-        .mat-mdc-nav-list {
+        .mat-mdc-nav-list.ddr-mat-sidenav-nav-list {
             .mat-mdc-list-item {
                 width: auto;
                 margin-right: .5rem;
@@ -62,7 +62,35 @@
     }
 
     ddr-mat-sidenav-toggle {
-        margin-right: .5rem;
+        margin-right: .25rem;
+    }
+
+    &.ddr-mat-toolbar-icon-start {
+        padding-left: .25rem;
+    }
+
+    &.ddr-mat-toolbar-icon-end {
+        padding-right: .25rem;
+    }
+
+    @include ddr-mat-mobile {
+        &.ddr-mat-toolbar-icon-start-mobile {
+            padding-left: .25rem;
+        }
+
+        &.ddr-mat-toolbar-icon-end-mobile {
+            padding-right: .25rem;
+        }
+    }
+
+    @include ddr-mat-desktop {
+        &.ddr-mat-toolbar-icon-start-desktop {
+            padding-left: .25rem;
+        }
+
+        &.ddr-mat-toolbar-icon-end-desktop {
+            padding-right: .25rem;
+        }
     }
 }
 

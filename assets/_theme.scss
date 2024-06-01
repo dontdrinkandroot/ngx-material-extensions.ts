@@ -1,19 +1,18 @@
-@use '@angular/material-experimental' as matx;
 @use '@angular/material' as mat;
 
 @include mat.core();
 
-$ddr-mat-primary: matx.$m3-azure-palette !default;
-$ddr-mat-tertiary: matx.$m3-magenta-palette !default;
+$ddr-mat-primary: mat.$azure-palette !default;
+$ddr-mat-tertiary: mat.$magenta-palette !default;
 
-$ddr-light-theme: matx.define-theme((
+$ddr-light-theme: mat.define-theme((
         color: (
                 primary: $ddr-mat-primary,
                 tertiary: $ddr-mat-tertiary,
         ),
 )) !default;
 
-$ddr-dark-theme: matx.define-theme((
+$ddr-dark-theme: mat.define-theme((
         color: (
                 theme-type: dark,
                 primary: $ddr-mat-primary,
@@ -23,19 +22,6 @@ $ddr-dark-theme: matx.define-theme((
 
 html {
     @include mat.all-component-themes($ddr-light-theme);
-
-    &.mat-secondary {
-        @include mat.button-color($ddr-light-theme, $color-variant: secondary);
-    }
-
-    &.mat-tertiary {
-        @include mat.button-color($ddr-light-theme, $color-variant: tertiary);
-    }
-
-    &.mat-error {
-        @include mat.button-color($ddr-light-theme, $color-variant: error);
-    }
-
     @media (prefers-color-scheme: dark) {
         @include mat.all-component-colors($ddr-dark-theme);
     }

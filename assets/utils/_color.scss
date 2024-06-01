@@ -1,0 +1,29 @@
+@use '@angular/material' as mat;
+
+.text-primary {
+    color: mat.get-theme-color($ddr-light-theme, primary) !important;
+    @media (prefers-color-scheme: dark) {
+        color: mat.get-theme-color($ddr-dark-theme, primary) !important;
+    }
+}
+
+.text-secondary {
+    color: mat.get-theme-color($ddr-light-theme, secondary) !important;
+    @media (prefers-color-scheme: dark) {
+        color: mat.get-theme-color($ddr-dark-theme, secondary) !important;
+    }
+}
+
+.text-tertiary {
+    color: mat.get-theme-color($ddr-light-theme, tertiary) !important;
+    @media (prefers-color-scheme: dark) {
+        color: mat.get-theme-color($ddr-dark-theme, tertiary) !important;
+    }
+}
+
+.text-error {
+    color: mat.get-theme-color($ddr-light-theme, error) !important;
+    @media (prefers-color-scheme: dark) {
+        color: mat.get-theme-color($ddr-dark-theme, error) !important;
+    }
+}
