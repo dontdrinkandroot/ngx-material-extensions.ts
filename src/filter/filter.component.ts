@@ -1,14 +1,4 @@
-import {
-    AfterContentInit,
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnDestroy,
-    OnInit,
-    Output,
-    ViewChild
-} from '@angular/core';
+import {AfterContentInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {interval, Subscription} from 'rxjs';
 import {debounce} from 'rxjs/operators';
@@ -16,13 +6,14 @@ import {debounce} from 'rxjs/operators';
 @Component({
     selector: 'ddr-filter',
     templateUrl: './filter.component.html',
+    standalone: false
 })
 export class FilterComponent implements OnInit, OnDestroy, AfterContentInit
 {
     public formControl: FormControl = new FormControl();
 
     @Output()
-    public onFilterChanged = new EventEmitter<string>();
+    public filterChanged = new EventEmitter<string>();
 
     @Input()
     public bouncePeriod = 500;
@@ -39,7 +30,7 @@ export class FilterComponent implements OnInit, OnDestroy, AfterContentInit
     {
         this.valueChangesSubscription = this.formControl.valueChanges
             .pipe(debounce(() => interval(this.bouncePeriod)))
-            .subscribe((value => this.onFilterChanged.emit(value)));
+            .subscribe((value => this.filterChanged.emit(value)));
     }
 
     /**
@@ -62,6 +53,6 @@ export class FilterComponent implements OnInit, OnDestroy, AfterContentInit
     public clear()
     {
         this.formControl.setValue(null);
-        this.onFilterChanged.emit(undefined);
+        this.filterChanged.emit(undefined);
     }
 }

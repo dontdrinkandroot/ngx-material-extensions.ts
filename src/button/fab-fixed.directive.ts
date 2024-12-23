@@ -1,7 +1,8 @@
 import {Directive, ElementRef, OnInit} from "@angular/core";
 
 @Directive({
-    selector: '[ddrMatFabFixed]'
+    selector: '[ddrMatFabFixed]',
+    standalone: false
 })
 export class FabFixedDirective implements OnInit {
     constructor(private el: ElementRef) {

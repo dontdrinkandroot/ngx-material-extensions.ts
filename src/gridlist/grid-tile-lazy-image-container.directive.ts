@@ -3,7 +3,10 @@ import {GridTileLazyImgDirective} from './grid-tile-lazy-img.directive';
 import {Subscription} from 'rxjs';
 import {Debounce, Limit} from '@dontdrinkandroot/ngx-extensions';
 
-@Directive({selector: '[ddrGridTileLazyImgContainer]'})
+@Directive({
+    selector: '[ddrGridTileLazyImgContainer]',
+    standalone: false
+})
 export class GridTileLazyImageContainerDirective implements AfterContentInit, OnDestroy
 {
     @ContentChildren(GridTileLazyImgDirective, {descendants: true}) lazyImages!: QueryList<GridTileLazyImgDirective>;
@@ -12,19 +15,19 @@ export class GridTileLazyImageContainerDirective implements AfterContentInit, On
 
     @HostListener('window:resize', ['$event'])
     @Debounce()
-    public windowResized($event: Event)
+    public windowResized()
     {
         if (null != this.lazyImages) {
-            this.lazyImages.forEach((lazyImage: GridTileLazyImgDirective, index) => lazyImage.recheck());
+            this.lazyImages.forEach((lazyImage: GridTileLazyImgDirective) => lazyImage.recheck());
         }
     }
 
     @HostListener('window:scroll', ['$event'])
     @Limit()
-    public windowScroll($event: Event)
+    public windowScroll()
     {
         if (null != this.lazyImages) {
-            this.lazyImages.forEach((lazyImage: GridTileLazyImgDirective, index) => lazyImage.check());
+            this.lazyImages.forEach((lazyImage: GridTileLazyImgDirective) => lazyImage.check());
         }
     }
 
@@ -33,11 +36,11 @@ export class GridTileLazyImageContainerDirective implements AfterContentInit, On
      */
     public ngAfterContentInit(): void
     {
-        this.lazyImages.forEach((lazyImage: GridTileLazyImgDirective, index) => lazyImage.check());
+        this.lazyImages.forEach((lazyImage: GridTileLazyImgDirective) => lazyImage.check());
         this.changeSubscription = this.lazyImages.changes.subscribe(() => {
             /* Wait one tick until layout is ready */
             setTimeout(
-                () => this.lazyImages.forEach((lazyImage: GridTileLazyImgDirective, index) => lazyImage.recheck())
+                () => this.lazyImages.forEach((lazyImage: GridTileLazyImgDirective) => lazyImage.recheck())
                 , 1
             );
         });

@@ -1,23 +1,21 @@
 import {Directive, ElementRef, Input, OnInit} from '@angular/core';
 
 @Directive({
-    selector: '[ddrMatToolbarFixedTop]'
+    selector: '[ddrMatToolbarFixedTop]',
+    standalone: false
 })
-export class ToolbarFixedTopDirective implements OnInit
-{
+export class ToolbarFixedTopDirective implements OnInit {
 
     @Input()
     public ddrMatToolbarFixedTop: string[] | '' = '';
 
-    constructor(private el: ElementRef)
-    {
+    constructor(private el: ElementRef) {
     }
 
     /**
      * @override
      */
-    public ngOnInit()
-    {
+    public ngOnInit() {
         const container = document.createElement('div');
         container.classList.add('ddr-mat-toolbar-fixed-top-container');
         this.el.nativeElement.parentElement.insertBefore(container, this.el.nativeElement);

@@ -10,18 +10,17 @@ import {toSignal} from '@angular/core/rxjs-interop';
         </button>`,
     host: {
         '[style.display]': 'visible() ? "block" : "none"'
-    }
+    },
+    standalone: false
 })
-export class SidenavToggleComponent
-{
-    public visible = toSignal(this.sidenavService.watchToggleVisible(), {initialValue: false});
+export class SidenavToggleComponent {
+    public visible;
 
-    constructor(private sidenavService: SidenavService)
-    {
+    constructor(private sidenavService: SidenavService) {
+        this.visible = toSignal(this.sidenavService.watchToggleVisible(), {initialValue: false});
     }
 
-    public toggleSidenav()
-    {
+    public toggleSidenav() {
         this.sidenavService.toggle();
     }
 }

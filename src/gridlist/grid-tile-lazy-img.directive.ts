@@ -1,7 +1,10 @@
-import {ChangeDetectorRef, Directive, ElementRef, HostBinding, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {ChangeDetectorRef, Directive, ElementRef, HostBinding, Input, OnChanges} from '@angular/core';
 import {NumberUtils, StringUtils} from '@dontdrinkandroot/ngx-extensions';
 
-@Directive({selector: '[ddrGridTileLazyImg]'})
+@Directive({
+    selector: '[ddrGridTileLazyImg]',
+    standalone: false
+})
 export class GridTileLazyImgDirective implements OnChanges
 {
     @Input('ddrGridTileLazyImg')
@@ -82,7 +85,7 @@ export class GridTileLazyImgDirective implements OnChanges
     /**
      * @override
      */
-    public ngOnChanges(changes: SimpleChanges): void
+    public ngOnChanges(): void
     {
         this.displayed = false;
         this.maxLoadedDimension = null;

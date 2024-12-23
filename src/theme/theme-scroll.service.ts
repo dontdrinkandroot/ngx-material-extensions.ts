@@ -21,8 +21,7 @@ export class ThemeScrollService {
                 map(() => this.document.documentElement.scrollTop > 0),
                 distinctUntilChanged()
             ).subscribe((scrolled) => {
-            scrolled ? this.document.body.classList.add('ddr-mat-scrolled') : this.document.body.classList.remove('ddr-mat-scrolled');
-
+            this.document.body.classList.toggle('ddr-mat-scrolled', scrolled);
             lightMetaElement.content = scrolled ? this.themeConfig.themeColorLightScrolled : this.themeConfig.themeColorLight;
             darkMetaElement.content = scrolled ? this.themeConfig.themeColorDarkScrolled : this.themeConfig.themeColorDark;
         });

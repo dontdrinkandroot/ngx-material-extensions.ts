@@ -5,7 +5,8 @@ import {Observable, Subscription} from 'rxjs';
 
 @Component({
     selector: 'ddr-mat-sidenav-container',
-    templateUrl: './sidenav-container.component.html'
+    templateUrl: './sidenav-container.component.html',
+    standalone: false
 })
 export class SidenavContainerComponent implements OnInit, OnChanges, OnDestroy
 {
@@ -15,9 +16,9 @@ export class SidenavContainerComponent implements OnInit, OnChanges, OnDestroy
     @Input()
     public stayOpenOnLargeScreen = true;
 
-    public mode$: Observable<MatDrawerMode> = this.sidenavService.getModeObservable();
+    public mode$: Observable<MatDrawerMode>;
 
-    public opened$: Observable<boolean> = this.sidenavService.getOpenedObservable();
+    public opened$: Observable<boolean>;
 
     private scrollSubscription!: Subscription;
 
@@ -25,6 +26,8 @@ export class SidenavContainerComponent implements OnInit, OnChanges, OnDestroy
         private sidenavService: SidenavService,
     )
     {
+        this.mode$ = this.sidenavService.getModeObservable();
+        this.opened$ = this.sidenavService.getOpenedObservable();
     }
 
     /**
