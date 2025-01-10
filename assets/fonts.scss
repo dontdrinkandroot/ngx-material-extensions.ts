@@ -2,20 +2,18 @@
 @import "@fontsource/roboto/400.css";
 @import "@fontsource/roboto/500.css";
 @import "@fontsource/roboto/700.css";
-@import "@fontsource/material-icons";
+@import "@fontsource/material-symbols-rounded/400.css";
 
-.material-icons {
-    font-family: 'Material Icons';
+.material-symbols-rounded {
+    font-family: "Material Symbols Rounded";
     font-weight: normal;
     font-style: normal;
-    font-size: 24px;
-    line-height: 1;
-    letter-spacing: normal;
-    text-transform: none;
+    font-size: 24px; /* Preferred icon size */
     display: inline-block;
-    white-space: nowrap;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
     word-wrap: normal;
+    white-space: nowrap;
     direction: ltr;
-    -moz-font-feature-settings: 'liga';
-    -moz-osx-font-smoothing: grayscale;
 }
