@@ -1,7 +1,7 @@
-import {ENVIRONMENT_INITIALIZER, inject, NgModule} from '@angular/core';
+import {EnvironmentProviders, inject, makeEnvironmentProviders, NgModule, provideEnvironmentInitializer} from '@angular/core';
 import {SidenavToggleComponent} from './sidenav/sidenav-toggle.component';
 import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
+import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {GridTileLazyImageContainerDirective} from './gridlist/grid-tile-lazy-image-container.directive';
 import {GridTileLazyImgDirective} from './gridlist/grid-tile-lazy-img.directive';
@@ -48,15 +48,15 @@ import {FabFixedDirective} from "./button/fab-fixed.directive";
         SidenavContainerComponent,
         ToolbarFixedTopDirective
     ],
-    providers: [
+    providers: []
+})
+export class DdrMaterialExtensionsModule {
+}
+
+// TODO: I actually want to run this when the module is loaded, but haven't figured out the correct way for Angular 19 yet as the ENVIRONMENT_INITIALIZER Token is deprecated
+export function provideDdrMaterialExtensions(): EnvironmentProviders {
+    return makeEnvironmentProviders([
         ThemeScrollService,
-        {
-            provide: ENVIRONMENT_INITIALIZER,
-            multi: true,
-            useValue() {
-                inject(ThemeScrollService).init()
-            }
-        },
         {
             provide: DDR_MATERIAL_EXTENSIONS_THEME,
             multi: false,
@@ -66,9 +66,10 @@ import {FabFixedDirective} from "./button/fab-fixed.directive";
                 themeColorLightScrolled: '#efedf1',
                 themeColorDarkScrolled: '#1e1f23',
             }
-        }
-    ]
-})
-export class DdrMaterialExtensionsModule
-{
+        },
+        provideEnvironmentInitializer(() => {
+            inject(ThemeScrollService).init();
+            inject(MatIconRegistry).setDefaultFontSetClass('material-symbols-rounded');
+        })
+    ]);
 }
