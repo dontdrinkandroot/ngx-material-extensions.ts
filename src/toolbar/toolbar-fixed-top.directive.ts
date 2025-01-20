@@ -1,10 +1,9 @@
 import {Directive, ElementRef, Input, OnInit} from '@angular/core';
 
 @Directive({
-    selector: '[ddrMatToolbarFixedTop]',
-    standalone: false
+    selector: '[ddrMatToolbarFixedTop]'
 })
-export class ToolbarFixedTopDirective implements OnInit {
+export class DdrMatToolbarFixedTopDirective implements OnInit {
 
     @Input()
     public ddrMatToolbarFixedTop: string[] | '' = '';

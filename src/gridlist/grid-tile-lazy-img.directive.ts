@@ -2,12 +2,11 @@ import {ChangeDetectorRef, Directive, ElementRef, HostBinding, Input, OnChanges}
 import {NumberUtils, StringUtils} from '@dontdrinkandroot/ngx-extensions';
 
 @Directive({
-    selector: '[ddrGridTileLazyImg]',
-    standalone: false
+    selector: '[ddrMatGridTileLazyImg]'
 })
-export class GridTileLazyImgDirective implements OnChanges
+export class DdrMatGridTileLazyImgDirective implements OnChanges
 {
-    @Input('ddrGridTileLazyImg')
+    @Input('ddrMatGridTileLazyImg')
     public src!: string;
 
     @HostBinding('src')

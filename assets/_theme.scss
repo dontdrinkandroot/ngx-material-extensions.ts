@@ -10,6 +10,9 @@ $ddr-light-theme: mat.define-theme((
                 primary: $ddr-mat-primary,
                 tertiary: $ddr-mat-tertiary,
         ),
+        typography: (
+                plain-family: 'Roboto Flex Variable'
+        )
 )) !default;
 
 $ddr-dark-theme: mat.define-theme((
@@ -127,5 +130,5 @@ html, body {
 
 body {
     margin: 0;
-    font-family: Roboto, "Helvetica Neue", sans-serif;
+    font-family: 'Roboto Flex Variable', 'Helvetica Neue', sans-serif;
 }

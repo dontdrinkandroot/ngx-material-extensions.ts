@@ -1,45 +1,42 @@
-import {AfterContentInit, Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
-import {FormControl} from '@angular/forms';
-import {interval, Subscription} from 'rxjs';
+import {AfterContentInit, ChangeDetectionStrategy, Component, ElementRef, Input, ViewChild} from '@angular/core';
+import {FormControl, ReactiveFormsModule} from '@angular/forms';
+import {interval} from 'rxjs';
 import {debounce} from 'rxjs/operators';
+import {MatIcon} from "@angular/material/icon";
+import {MatCard} from "@angular/material/card";
+import {MatFormField, MatSuffix} from "@angular/material/form-field";
+import {MatInput} from "@angular/material/input";
+import {MatIconButton} from "@angular/material/button";
+import {outputFromObservable} from "@angular/core/rxjs-interop";
 
 @Component({
-    selector: 'ddr-filter',
+    selector: 'ddr-mat-filter',
     templateUrl: './filter.component.html',
-    standalone: false
+    imports: [
+        MatIconButton,
+        MatCard,
+        MatFormField,
+        MatIcon,
+        MatInput,
+        MatSuffix,
+        ReactiveFormsModule
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FilterComponent implements OnInit, OnDestroy, AfterContentInit
+export class DdrMatFilterComponent implements AfterContentInit
 {
-    public formControl: FormControl = new FormControl();
+    public formControl = new FormControl<string | null>(null);
 
-    @Output()
-    public filterChanged = new EventEmitter<string>();
+    public filterChanged = outputFromObservable(
+        this.formControl.valueChanges
+            .pipe(debounce(() => interval(this.bouncePeriod)))
+    );
 
     @Input()
     public bouncePeriod = 500;
 
     @ViewChild('input', {static: true})
     public inputElement!: ElementRef;
-
-    private valueChangesSubscription!: Subscription;
-
-    /**
-     * @override
-     */
-    public ngOnInit(): void
-    {
-        this.valueChangesSubscription = this.formControl.valueChanges
-            .pipe(debounce(() => interval(this.bouncePeriod)))
-            .subscribe((value => this.filterChanged.emit(value)));
-    }
-
-    /**
-     * @override
-     */
-    public ngOnDestroy(): void
-    {
-        this.valueChangesSubscription.unsubscribe();
-    }
 
     /**
      * @override
@@ -53,6 +50,6 @@ export class FilterComponent implements OnInit, OnDestroy, AfterContentInit
     public clear()
     {
         this.formControl.setValue(null);
-        this.filterChanged.emit(undefined);
+        // this.filterChanged.emit(null);
     }
 }

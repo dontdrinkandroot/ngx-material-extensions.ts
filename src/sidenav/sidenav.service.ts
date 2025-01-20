@@ -1,15 +1,14 @@
-import {Inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {MatDrawerMode, MatDrawerToggleResult, MatSidenav} from '@angular/material/sidenav';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {NavigationStart, Router} from '@angular/router';
-import {DOCUMENT} from '@angular/common';
 
 @Injectable({
     providedIn: 'root'
 })
-export class SidenavService {
+export class DdrMatSidenavService {
     private sidenav!: MatSidenav;
 
     private stayOpenOnLargeScreen = true;
@@ -31,7 +30,6 @@ export class SidenavService {
     constructor(
         private breakpointObserver: BreakpointObserver,
         private router: Router,
-        @Inject(DOCUMENT) private document: Document,
     ) {
         this.screenLarge$ = this.breakpointObserver.observe(this.largeBreakpoints).pipe(
             map(result => result.matches)

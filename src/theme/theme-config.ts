@@ -1,8 +1,8 @@
 import {InjectionToken} from "@angular/core";
 
-export const DDR_MATERIAL_EXTENSIONS_THEME = new InjectionToken<ThemeConfig>('DDR_MATERIAL_EXTENSIONS_THEME');
+export const DDR_MAT_THEME = new InjectionToken<DdrMatThemeConfig>('DDR_MAT_THEME');
 
-export interface ThemeConfig {
+export interface DdrMatThemeConfig {
     themeColorLight: string,
     themeColorDark: string,
     themeColorLightScrolled: string,

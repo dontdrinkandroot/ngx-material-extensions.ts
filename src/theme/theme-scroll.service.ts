@@ -2,13 +2,13 @@ import {Inject, Injectable} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
 import {distinctUntilChanged, fromEvent} from "rxjs";
 import {map} from "rxjs/operators";
-import {DDR_MATERIAL_EXTENSIONS_THEME, ThemeConfig} from "./theme-config";
+import {DDR_MAT_THEME, DdrMatThemeConfig} from "./theme-config";
 
 @Injectable()
-export class ThemeScrollService {
+export class DdrMatThemeScrollService {
     constructor(
         @Inject(DOCUMENT) private readonly document: Document,
-        @Inject(DDR_MATERIAL_EXTENSIONS_THEME) private readonly themeConfig: ThemeConfig
+        @Inject(DDR_MAT_THEME) private readonly themeConfig: DdrMatThemeConfig
     ) {
     }
 

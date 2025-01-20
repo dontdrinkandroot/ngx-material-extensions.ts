@@ -1,14 +1,22 @@
-import {Component, Input, OnChanges, OnDestroy, OnInit, SimpleChanges, ViewChild} from '@angular/core';
-import {MatDrawerMode, MatSidenav} from '@angular/material/sidenav';
-import {SidenavService} from './sidenav.service';
-import {Observable, Subscription} from 'rxjs';
+import {ChangeDetectionStrategy, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild} from '@angular/core';
+import {MatDrawerMode, MatSidenav, MatSidenavContainer, MatSidenavContent} from '@angular/material/sidenav';
+import {DdrMatSidenavService} from './sidenav.service';
+import {Observable} from 'rxjs';
+import {AsyncPipe, NgClass} from "@angular/common";
 
 @Component({
     selector: 'ddr-mat-sidenav-container',
     templateUrl: './sidenav-container.component.html',
-    standalone: false
+    imports: [
+        AsyncPipe,
+        MatSidenav,
+        MatSidenavContainer,
+        MatSidenavContent,
+        NgClass
+    ],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SidenavContainerComponent implements OnInit, OnChanges, OnDestroy
+export class DdrMatSidenavContainerComponent implements OnInit, OnChanges
 {
     @ViewChild('sidenav', {static: true})
     public sidenav!: MatSidenav;
@@ -20,10 +28,8 @@ export class SidenavContainerComponent implements OnInit, OnChanges, OnDestroy
 
     public opened$: Observable<boolean>;
 
-    private scrollSubscription!: Subscription;
-
     constructor(
-        private sidenavService: SidenavService,
+        private sidenavService: DdrMatSidenavService,
     )
     {
         this.mode$ = this.sidenavService.getModeObservable();
@@ -44,13 +50,5 @@ export class SidenavContainerComponent implements OnInit, OnChanges, OnDestroy
     public ngOnInit(): void
     {
         this.sidenavService.setSidenav(this.sidenav);
-    }
-
-    /**
-     * @override
-     */
-    public ngOnDestroy()
-    {
-        this.scrollSubscription.unsubscribe();
     }
 }
