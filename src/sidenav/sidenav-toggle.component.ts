@@ -1,6 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {DdrMatSidenavService} from './sidenav.service';
-import {toSignal} from '@angular/core/rxjs-interop';
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
 
@@ -23,7 +22,7 @@ export class DdrMatSidenavToggleComponent {
     public visible;
 
     constructor(private sidenavService: DdrMatSidenavService) {
-        this.visible = toSignal(this.sidenavService.watchToggleVisible(), {initialValue: false});
+        this.visible = this.sidenavService.toggleVisible;
     }
 
     public toggleSidenav() {

@@ -41,6 +41,16 @@
             }
         }
     }
+
+    &.over {
+        .mat-sidenav {
+            .ddr-mat-toolbar-fixed-top-container {
+                .mat-toolbar {
+                    width: 360px;
+                }
+            }
+        }
+    }
 }
 
 .ddr-mat-fab-fixed-container {

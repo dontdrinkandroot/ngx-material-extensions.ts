@@ -1,8 +1,8 @@
-<mat-sidenav-container [ngClass]="(mode$|async)">
+<mat-sidenav-container [ngClass]="mode()">
     <mat-sidenav
         #sidenav
-        [mode]="(mode$|async) ?? 'over'"
-        [opened]="(opened$|async)"
+        [mode]="mode()"
+        [opened]="opened()"
         [fixedInViewport]="true"
     >
         <ng-content select="[slot=mat-sidenav]"></ng-content>

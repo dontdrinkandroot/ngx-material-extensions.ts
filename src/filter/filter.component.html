@@ -1,6 +1,9 @@
 <mat-card appearance="outlined">
     <mat-form-field appearance="outline" subscriptSizing="dynamic">
-        <input matInput type="text" [formControl]="formControl" #input />
+        <input matInput type="text" [formControl]="formControl" #input/>
+        @if (ddrMatPrefixIcon()) {
+            <mat-icon matPrefix>{{ ddrMatPrefixIcon() }}</mat-icon>
+        }
         <button mat-icon-button matSuffix (click)="clear()">
             <mat-icon>close</mat-icon>
         </button>

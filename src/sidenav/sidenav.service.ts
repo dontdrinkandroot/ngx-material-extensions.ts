@@ -1,17 +1,17 @@
-import {Injectable} from '@angular/core';
-import {MatDrawerMode, MatDrawerToggleResult, MatSidenav} from '@angular/material/sidenav';
+import {Injectable, signal} from '@angular/core';
+import {MatDrawerToggleResult, MatSidenav} from '@angular/material/sidenav';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject, combineLatest} from 'rxjs';
 import {map} from 'rxjs/operators';
 import {NavigationStart, Router} from '@angular/router';
+import {toObservable, toSignal} from "@angular/core/rxjs-interop";
 
 @Injectable({
     providedIn: 'root'
 })
 export class DdrMatSidenavService {
-    private sidenav!: MatSidenav;
 
-    private stayOpenOnLargeScreen = true;
+    private sidenav!: MatSidenav;
 
     private largeBreakpoints = [
         Breakpoints.Medium,
@@ -19,45 +19,60 @@ export class DdrMatSidenavService {
         Breakpoints.XLarge
     ];
 
-    private screenLarge$: Observable<boolean>;
+    public stayOpenOnLargeScreen = signal(true);
 
-    private mode$: Observable<MatDrawerMode>;
-
-    private opened$: Observable<boolean>;
+    private stayOpenOnLargeScreen$ = toObservable(this.stayOpenOnLargeScreen);
 
     private sidenavContentScrolled$ = new BehaviorSubject<boolean>(false);
+
+    public readonly mode;
+
+    public readonly opened;
+
+    public readonly toggleVisible;
 
     constructor(
         private breakpointObserver: BreakpointObserver,
         private router: Router,
     ) {
-        this.screenLarge$ = this.breakpointObserver.observe(this.largeBreakpoints).pipe(
+        const screenLarge$ = this.breakpointObserver.observe(this.largeBreakpoints).pipe(
             map(result => result.matches)
         );
-        this.mode$ = this.screenLarge$.pipe(
-            map(large => large && this.stayOpenOnLargeScreen ? 'side' : 'over')
+
+        const mode$ = combineLatest([
+            screenLarge$,
+            this.stayOpenOnLargeScreen$
+        ]).pipe(
+            map(([large, stayOpenOnLargeScreen]) => large && stayOpenOnLargeScreen ? 'side' : 'over'),
         );
-        this.opened$ = this.screenLarge$.pipe(
-            map(large => large && this.stayOpenOnLargeScreen)
+
+        const opened$ = combineLatest([
+            screenLarge$,
+            this.stayOpenOnLargeScreen$
+        ]).pipe(
+            map(([large, stayOpenOnLargeScreen]) => large && stayOpenOnLargeScreen),
         );
+
+        const toggleVisible$ = combineLatest([
+            screenLarge$,
+            this.stayOpenOnLargeScreen$
+        ]).pipe(
+            map(([large, stayOpenOnLargeScreen]) => !large || !stayOpenOnLargeScreen),
+        );
+
         this.router.events.subscribe(event => {
             if (event instanceof NavigationStart) {
                 this.closeSidebar();
             }
         });
+
+        this.mode = toSignal(mode$, {initialValue: 'over'});
+        this.opened = toSignal(opened$, {initialValue: false});
+        this.toggleVisible = toSignal(toggleVisible$, {initialValue: true});
     }
 
     public setSidenav(sidenav: MatSidenav): void {
         this.sidenav = sidenav;
-    }
-
-
-    public getStayOpenOnLargeScreen(): boolean {
-        return this.stayOpenOnLargeScreen;
-    }
-
-    public setStayOpenOnLargeScreen(value: boolean): void {
-        this.stayOpenOnLargeScreen = value;
     }
 
     public toggle(): Promise<MatDrawerToggleResult> {
@@ -65,7 +80,7 @@ export class DdrMatSidenavService {
             return Promise.reject('No MatSidenav found. Use setSidenav() of SidenavService');
         }
 
-        if (!(this.stayOpenOnLargeScreen && this.breakpointObserver.isMatched(this.largeBreakpoints))) {
+        if (!(this.stayOpenOnLargeScreen() && this.breakpointObserver.isMatched(this.largeBreakpoints))) {
             return this.sidenav.toggle();
         }
 
@@ -73,23 +88,9 @@ export class DdrMatSidenavService {
     }
 
     public closeSidebar(): void {
-        if (!(this.stayOpenOnLargeScreen && this.breakpointObserver.isMatched(this.largeBreakpoints))) {
+        if (!(this.stayOpenOnLargeScreen() && this.breakpointObserver.isMatched(this.largeBreakpoints))) {
             this.sidenav.close();
         }
-    }
-
-    public getModeObservable(): Observable<MatDrawerMode> {
-        return this.mode$;
-    }
-
-    public getOpenedObservable(): Observable<boolean> {
-        return this.opened$;
-    }
-
-    public watchToggleVisible() {
-        return this.screenLarge$.pipe(
-            map(large => !large || !this.stayOpenOnLargeScreen)
-        );
     }
 
     public watchContentScrolled() {
