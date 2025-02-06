@@ -4,6 +4,7 @@
 
 $ddr-mat-primary: mat.$azure-palette !default;
 $ddr-mat-tertiary: mat.$magenta-palette !default;
+$ddr-mat-density: 0;
 
 $ddr-light-theme: mat.define-theme((
         color: (
@@ -12,7 +13,8 @@ $ddr-light-theme: mat.define-theme((
         ),
         typography: (
                 plain-family: 'Roboto Flex Variable'
-        )
+        ),
+        density: $ddr-mat-density
 )) !default;
 
 $ddr-dark-theme: mat.define-theme((
@@ -20,7 +22,7 @@ $ddr-dark-theme: mat.define-theme((
                 theme-type: dark,
                 primary: $ddr-mat-primary,
                 tertiary: $ddr-mat-tertiary,
-        ),
+        )
 )) !default;
 
 html {
