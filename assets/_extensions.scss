@@ -111,9 +111,9 @@
         z-index: 2;
     }
 
-    height: var(--mat-toolbar-mobile-height);
+    height: var(--mat-toolbar-mobile-height, 56px);
     @media (min-width: $ddr-breakpoint-sm) {
-        height: var(--mat-toolbar-standard-height);
+        height: var(--mat-toolbar-standard-height, 64px);
     }
 }
 
@@ -133,10 +133,7 @@ p.mat-mdc-list-item-line {
 body.ddr-mat-scrolled {
     .ddr-mat-toolbar-fixed-top-container {
         .mat-toolbar {
-            background: mat.get-theme-color($ddr-light-theme, 'surface-container');
-            @media (prefers-color-scheme: dark) {
-                background: mat.get-theme-color($ddr-dark-theme, 'surface-container');
-            }
+            background: var(--mat-sys-surface-container)
         }
     }
 }
