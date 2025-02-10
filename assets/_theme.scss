@@ -1,20 +1,17 @@
 @use '@angular/material' as mat;
-
-$ddr-mat-primary: mat.$azure-palette !default;
-$ddr-mat-tertiary: mat.$magenta-palette !default;
-$ddr-mat-density: 0 !default;
+@use 'variables' as ddr-vars;
 
 html {
     color-scheme: light dark;
     @include mat.theme((
             color: (
-                    primary: $ddr-mat-primary,
-                    tertiary: $ddr-mat-tertiary,
+                    primary: ddr-vars.$primary,
+                    tertiary: ddr-vars.$tertiary,
             ),
             typography: (
                     plain-family: 'Roboto Flex Variable'
             ),
-            density: $ddr-mat-density
+            density: ddr-vars.$density
     ));
 }
 

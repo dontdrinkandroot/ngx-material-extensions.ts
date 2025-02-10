@@ -1,12 +1,14 @@
-@each $prefix, $property in $ddr-paddings {
-    @each $suffix, $size in $ddr-spacers {
+@use '../variables' as ddr-vars;
+
+@each $prefix, $property in ddr-vars.$paddings {
+    @each $suffix, $size in ddr-vars.$spacers {
         .#{$prefix}-#{$suffix} {
             #{$property}: #{$size} !important;
         }
     }
 }
 
-@each $suffix, $size in $ddr-spacers {
+@each $suffix, $size in ddr-vars.$spacers {
     .px-#{$suffix} {
         padding-left: #{$size} !important;
         padding-right: #{$size} !important;
@@ -18,15 +20,15 @@
     }
 }
 
-@each $prefix, $property in $ddr-margins {
-    @each $suffix, $size in $ddr-spacers {
+@each $prefix, $property in ddr-vars.$margins {
+    @each $suffix, $size in ddr-vars.$spacers {
         .#{$prefix}-#{$suffix} {
             #{$property}: #{$size} !important;
         }
     }
 }
 
-@each $suffix, $size in $ddr-spacers {
+@each $suffix, $size in ddr-vars.$spacers {
     .mx-#{$suffix} {
         margin-left: #{$size} !important;
         margin-right: #{$size} !important;

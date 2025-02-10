@@ -1,6 +1,7 @@
-@import "./utils/display";
-@import "./utils/spacing";
-@import "./utils/color";
+@use "./utils/display";
+@use "./utils/spacing";
+@use "./utils/color";
+@use 'mixins' as ddr-mixins;
 
 .flex-row {
     flex-direction: row !important;
@@ -11,7 +12,7 @@
 }
 
 .flex-auto {
-    flex: 1 1 auto !important;
+    @include ddr-mixins.flex-auto;
 }
 
 .d-grid {
@@ -28,9 +29,7 @@
 }
 
 .text-overflow-ellipsis {
-    overflow: hidden !important;
-    text-overflow: ellipsis !important;
-    white-space: nowrap !important;
+    @include ddr-mixins.text-overflow-ellipsis;
 }
 
 

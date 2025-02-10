@@ -1,4 +1,7 @@
 @use '@angular/material' as mat;
+@use 'variables' as ddr-vars;
+@use 'mixins' as ddr-mixins;
+@use 'utils' as ddr-utils;
 
 .mat-sidenav-container {
 
@@ -55,7 +58,7 @@
 
 .ddr-mat-fab-fixed-container {
 
-    height: calc($ddr-mat-fab-height + 2rem);
+    height: calc(ddr-vars.$fab-height + 2rem);
 
     .mdc-fab {
         position: fixed;
@@ -67,8 +70,8 @@
 .mat-toolbar {
 
     .ddr-mat-heading {
-        @extend .text-overflow-ellipsis;
-        @extend .flex-auto;
+        @include ddr-mixins.text-overflow-ellipsis;
+        @include ddr-mixins.flex-auto;
     }
 
     ddr-mat-sidenav-toggle {
@@ -83,7 +86,7 @@
         padding-right: .25rem;
     }
 
-    @include ddr-mat-mobile {
+    @include ddr-mixins.media-mobile {
         &.ddr-mat-toolbar-icon-start-mobile {
             padding-left: .25rem;
         }
@@ -93,7 +96,7 @@
         }
     }
 
-    @include ddr-mat-desktop {
+    @include ddr-mixins.media-desktop {
         &.ddr-mat-toolbar-icon-start-desktop {
             padding-left: .25rem;
         }
@@ -112,7 +115,7 @@
     }
 
     height: var(--mat-toolbar-mobile-height, 56px);
-    @media (min-width: $ddr-breakpoint-sm) {
+    @media (min-width: ddr-vars.$breakpoint-sm) {
         height: var(--mat-toolbar-standard-height, 64px);
     }
 }

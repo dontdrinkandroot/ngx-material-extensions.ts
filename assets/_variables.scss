@@ -1,14 +1,20 @@
-$ddr-spacer: 1rem !default;
-$ddr-spacers: (
+@use '@angular/material' as mat;
+
+$primary: mat.$azure-palette !default;
+$tertiary: mat.$magenta-palette !default;
+$density: 0 !default;
+
+$spacer: 1rem !default;
+$spacers: (
         none: 0,
-        quarter: $ddr-spacer * .25,
-        half: $ddr-spacer * .5,
-        full: $ddr-spacer,
-        one-half: $ddr-spacer * 1.5,
-        double: $ddr-spacer * 2
+        quarter: $spacer * .25,
+        half: $spacer * .5,
+        full: $spacer,
+        one-half: $spacer * 1.5,
+        double: $spacer * 2
 ) !default;
 
-$ddr-paddings: (
+$paddings: (
         'p': 'padding',
         'ps': 'padding-left',
         'pe': 'padding-right',
@@ -16,7 +22,7 @@ $ddr-paddings: (
         'pb': 'padding-bottom'
 ) !default;
 
-$ddr-margins: (
+$margins: (
         'm': 'margin',
         'ms': 'margin-left',
         'me': 'margin-right',
@@ -24,7 +30,7 @@ $ddr-margins: (
         'mb': 'margin-bottom'
 ) !default;
 
-$ddr-displays: (
+$displays: (
         none: none,
         inline: inline,
         inline-block: inline-block,
@@ -38,17 +44,17 @@ $ddr-displays: (
         inline-flex: inline-flex
 ) !default;
 
-$ddr-mat-fab-height: 56px !default;
+$fab-height: 56px !default;
 
-$ddr-breakpoint-xs: 0;
-$ddr-breakpoint-sm: 600px;
-$ddr-breakpoint-md: 960px;
-$ddr-breakpoint-lg: 1280px;
-$ddr-breakpoint-xl: 1920px;
-$ddr-breakpoints: (
-        xs: $ddr-breakpoint-xs,
-        sm: $ddr-breakpoint-sm,
-        md: $ddr-breakpoint-md,
-        lg: $ddr-breakpoint-lg,
-        xl: $ddr-breakpoint-xl
+$breakpoint-xs: 0;
+$breakpoint-sm: 600px;
+$breakpoint-md: 960px;
+$breakpoint-lg: 1280px;
+$breakpoint-xl: 1920px;
+$breakpoints: (
+        xs: $breakpoint-xs,
+        sm: $breakpoint-sm,
+        md: $breakpoint-md,
+        lg: $breakpoint-lg,
+        xl: $breakpoint-xl
 ) !default;

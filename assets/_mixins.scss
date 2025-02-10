@@ -1,11 +1,23 @@
-@mixin ddr-mat-mobile {
-    @media (max-width: #{$ddr-breakpoint-md - 1}) {
+@use 'variables' as ddr-vars;
+
+@mixin media-mobile {
+    @media (max-width: #{ddr-vars.$breakpoint-md - 1}) {
         @content;
     }
 }
 
-@mixin ddr-mat-desktop {
-    @media (min-width: #{$ddr-breakpoint-md}) {
+@mixin media-desktop {
+    @media (min-width: #{ddr-vars.$breakpoint-md}) {
         @content;
     }
+}
+
+@mixin text-overflow-ellipsis {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+}
+
+@mixin flex-auto {
+    flex: 1 1 auto !important;
 }
