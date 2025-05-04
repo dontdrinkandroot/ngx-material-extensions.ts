@@ -1,7 +1,7 @@
 import {EnvironmentProviders, inject, makeEnvironmentProviders, provideEnvironmentInitializer} from '@angular/core';
 import {MatIconRegistry} from '@angular/material/icon';
-import {DDR_MAT_THEME} from "./theme/theme-config";
-import {DdrMatThemeScrollService} from "./theme/theme-scroll.service";
+import {DDR_MAT_THEME} from './theme/theme-config';
+import {DdrMatThemeScrollService} from './theme/theme-scroll.service';
 
 export function provideDdrMaterialExtensions(): EnvironmentProviders {
     return makeEnvironmentProviders([
@@ -10,10 +10,10 @@ export function provideDdrMaterialExtensions(): EnvironmentProviders {
             provide: DDR_MAT_THEME,
             multi: false,
             useValue: {
-                themeColorLight: '#fdfbff',
-                themeColorDark: '#1a1b1f',
-                themeColorLightScrolled: '#efedf1',
-                themeColorDarkScrolled: '#1e1f23',
+                themeColorLight: '#faf9fd',
+                themeColorDark: '#121316',
+                themeColorLightScrolled: '#efedf0',
+                themeColorDarkScrolled: '#1f2022',
             }
         },
         provideEnvironmentInitializer(() => {
