@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import {DdrMatSidenavService} from './sidenav.service';
 import {MatIcon} from "@angular/material/icon";
 import {MatIconButton} from "@angular/material/button";
@@ -19,9 +19,11 @@ import {MatIconButton} from "@angular/material/button";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DdrMatSidenavToggleComponent {
+    private sidenavService = inject(DdrMatSidenavService);
+
     public visible;
 
-    constructor(private sidenavService: DdrMatSidenavService) {
+    constructor() {
         this.visible = this.sidenavService.toggleVisible;
     }
 

@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, effect, input, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component, effect, inject, input, OnInit, ViewChild} from '@angular/core';
 import {MatSidenav, MatSidenavContainer, MatSidenavContent} from '@angular/material/sidenav';
 import {DdrMatSidenavService} from './sidenav.service';
 import {NgClass} from "@angular/common";
@@ -16,6 +16,8 @@ import {NgClass} from "@angular/common";
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DdrMatSidenavContainerComponent implements OnInit {
+    private sidenavService = inject(DdrMatSidenavService);
+
     @ViewChild('sidenav', {static: true})
     public sidenav!: MatSidenav;
 
@@ -25,9 +27,7 @@ export class DdrMatSidenavContainerComponent implements OnInit {
 
     protected opened;
 
-    constructor(
-        private sidenavService: DdrMatSidenavService,
-    ) {
+    constructor() {
         this.mode = this.sidenavService.mode;
         this.opened = this.sidenavService.opened;
 

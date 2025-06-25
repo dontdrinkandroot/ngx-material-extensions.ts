@@ -1,4 +1,4 @@
-import {Inject, Injectable} from "@angular/core";
+import {Injectable, inject} from "@angular/core";
 import {DOCUMENT} from "@angular/common";
 import {distinctUntilChanged, fromEvent} from "rxjs";
 import {map} from "rxjs/operators";
@@ -6,11 +6,9 @@ import {DDR_MAT_THEME, DdrMatThemeConfig} from "./theme-config";
 
 @Injectable()
 export class DdrMatThemeScrollService {
-    constructor(
-        @Inject(DOCUMENT) private readonly document: Document,
-        @Inject(DDR_MAT_THEME) private readonly themeConfig: DdrMatThemeConfig
-    ) {
-    }
+    private readonly document = inject<Document>(DOCUMENT);
+
+    private readonly themeConfig = inject<DdrMatThemeConfig>(DDR_MAT_THEME);
 
     public init() {
         const lightMetaElement = this.findOrCreateThemeColorMetaElement('(prefers-color-scheme: light)', this.themeConfig.themeColorLight);

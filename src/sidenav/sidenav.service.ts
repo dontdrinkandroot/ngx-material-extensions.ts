@@ -1,4 +1,4 @@
-import {Injectable, signal} from '@angular/core';
+import {inject, Injectable, signal} from '@angular/core';
 import {MatDrawerToggleResult, MatSidenav} from '@angular/material/sidenav';
 import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {BehaviorSubject, combineLatest} from 'rxjs';
@@ -10,6 +10,10 @@ import {toObservable, toSignal} from "@angular/core/rxjs-interop";
     providedIn: 'root'
 })
 export class DdrMatSidenavService {
+
+    private breakpointObserver = inject(BreakpointObserver);
+
+    private router = inject(Router);
 
     private sidenav!: MatSidenav;
 
@@ -31,10 +35,7 @@ export class DdrMatSidenavService {
 
     public readonly toggleVisible;
 
-    constructor(
-        private breakpointObserver: BreakpointObserver,
-        private router: Router,
-    ) {
+    constructor() {
         const screenLarge$ = this.breakpointObserver.observe(this.largeBreakpoints).pipe(
             map(result => result.matches)
         );
